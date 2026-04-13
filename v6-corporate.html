@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BankSync — Sincronizacion bancaria para asesorias y pymes</title>
+<meta name="description" content="Banca conectada con tu contabilidad, sin esfuerzo. PSD2 multi-banco multi-ERP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:#0f172a;line-height:1.55}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.9);backdrop-filter:blur(16px);border-bottom:1px solid #e2e8f0}
+.nav-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;color:#0f172a}
+.brand-mark{width:30px;height:30px;background:linear-gradient(135deg,#0ea5e9 0%,#0284c7 100%);color:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:#475569;font-size:14px;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#0ea5e9}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:8px;font-size:14px;font-weight:600;transition:all .15s}
+.btn-primary{background:#0ea5e9;color:#fff}
+.btn-primary:hover{background:#0284c7;transform:translateY(-1px);box-shadow:0 4px 12px rgba(14,165,233,0.25)}
+.btn-secondary{background:#fff;border:1px solid #e2e8f0;color:#0f172a}
+.btn-secondary:hover{border-color:#0ea5e9;color:#0ea5e9}
+.btn-lg{padding:12px 24px;font-size:15px}
+@media(max-width:768px){.nav-links a:not(.btn){display:none}}
+
+.hero{padding:100px 0 60px;background:linear-gradient(180deg,#f0f9ff 0%,#fff 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(14,165,233,0.08) 0%,transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border:1px solid #e2e8f0;border-radius:999px;font-size:13px;color:#475569;margin-bottom:24px;box-shadow:0 1px 2px rgba(0,0,0,0.04)}
+.hero-badge-dot{width:8px;height:8px;border-radius:50%;background:#10b981}
+.hero h1{font-size:clamp(36px,5vw,56px);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:20px;color:#0f172a}
+.hero h1 .highlight{color:#0ea5e9}
+.hero p{font-size:18px;color:#475569;margin-bottom:32px;line-height:1.55;max-width:560px}
+.hero-cta{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap}
+.hero-trust{font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-bottom:12px}
+.hero-banks{display:flex;gap:24px;flex-wrap:wrap;color:#64748b;font-weight:600;font-size:14px}
+
+.dashboard-mock{background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 12px 40px rgba(15,23,42,0.08),0 4px 8px rgba(15,23,42,0.04);overflow:hidden}
+.dash-header{padding:14px 18px;background:#f8fafc;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between}
+.dash-title{font-size:13px;font-weight:600;color:#0f172a}
+.dash-status{display:flex;align-items:center;gap:6px;font-size:12px;color:#10b981;font-weight:500}
+.dash-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#10b981;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.dash-body{padding:18px}
+.dash-row{padding:12px 0;border-bottom:1px solid #f1f5f9;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.dash-row:last-child{border-bottom:none}
+.dash-bank{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.dash-bank.bbva{background:linear-gradient(135deg,#004481 0%,#1973b8 100%)}
+.dash-bank.san{background:linear-gradient(135deg,#ec0000 0%,#a30000 100%)}
+.dash-bank.cai{background:linear-gradient(135deg,#00a0dc 0%,#0076a8 100%)}
+.dash-bank.sab{background:linear-gradient(135deg,#00539e 0%,#003b73 100%)}
+.dash-meta{min-width:0}
+.dash-name{font-size:13px;font-weight:600;color:#0f172a}
+.dash-sub{font-size:11px;color:#64748b}
+.dash-amount{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:#0f172a}
+.dash-amount.green{color:#059669}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+
+.logos-strip{padding:48px 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;background:#f8fafc}
+.logos-label{text-align:center;font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:24px;font-weight:600}
+.logos-list{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;color:#475569;font-weight:700;font-size:16px}
+
+section{padding:96px 0}
+.section-center{text-align:center;margin-bottom:64px}
+.section-tag{display:inline-block;padding:4px 12px;background:#e0f2fe;color:#0284c7;border-radius:999px;font-size:12px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.05em}
+.section-title{font-size:clamp(30px,4vw,44px);font-weight:800;color:#0f172a;margin-bottom:16px;letter-spacing:-0.02em;line-height:1.15}
+.section-lead{font-size:17px;color:#475569;max-width:620px;margin:0 auto;line-height:1.55}
+
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.benefit{padding:32px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;transition:all .2s}
+.benefit:hover{border-color:#0ea5e9;box-shadow:0 8px 24px rgba(14,165,233,0.08);transform:translateY(-2px)}
+.benefit-icon{width:48px;height:48px;background:#e0f2fe;color:#0284c7;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;margin-bottom:20px}
+.benefit h3{font-size:18px;font-weight:700;margin-bottom:8px;color:#0f172a}
+.benefit p{font-size:14px;color:#475569;line-height:1.55}
+@media(max-width:768px){.benefits-grid{grid-template-columns:1fr}}
+
+.integrations{background:#f8fafc;padding:96px 0}
+.int-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:1000px;margin:0 auto}
+.int-card{padding:24px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;text-align:center;transition:all .2s}
+.int-card:hover{border-color:#0ea5e9;transform:translateY(-2px)}
+.int-logo{width:48px;height:48px;border-radius:10px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff}
+.int-card h4{font-size:15px;font-weight:700;color:#0f172a;margin-bottom:4px}
+.int-card p{font-size:12px;color:#64748b}
+
+.stats-section{background:linear-gradient(135deg,#0ea5e9 0%,#0284c7 100%);padding:80px 0;color:#fff}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center}
+.stat-val{font-size:clamp(36px,5vw,56px);font-weight:800;letter-spacing:-0.02em;line-height:1;margin-bottom:8px}
+.stat-lbl{font-size:14px;opacity:0.85}
+@media(max-width:768px){.stats-grid{grid-template-columns:1fr 1fr}}
+
+.steps-section{padding:96px 0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:1000px;margin:0 auto;position:relative}
+.steps::before{content:'';position:absolute;top:32px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,#0ea5e9 0%,#0ea5e9 100%);opacity:0.2;z-index:0}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{width:64px;height:64px;background:#fff;border:3px solid #0ea5e9;color:#0ea5e9;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;margin-bottom:20px;box-shadow:0 4px 12px rgba(14,165,233,0.15)}
+.step h3{font-size:20px;font-weight:700;color:#0f172a;margin-bottom:10px}
+.step p{font-size:15px;color:#475569;line-height:1.55}
+@media(max-width:768px){.steps{grid-template-columns:1fr;gap:32px}.steps::before{display:none}}
+
+.cta-section{padding:96px 0 120px}
+.cta-box{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);border-radius:24px;padding:72px 48px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-40%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(14,165,233,0.25) 0%,transparent 70%)}
+.cta-box h2{font-size:clamp(28px,4vw,44px);font-weight:800;margin-bottom:16px;letter-spacing:-0.02em;position:relative}
+.cta-box p{font-size:17px;opacity:0.85;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;position:relative}
+.cta-box .btn{position:relative}
+.cta-box .btn-primary{background:#fff;color:#0f172a}
+.cta-box .btn-primary:hover{background:#f1f5f9}
+
+footer{background:#f8fafc;border-top:1px solid #e2e8f0;padding:56px 0 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-col h4{font-size:13px;color:#475569;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;font-weight:700}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a{font-size:14px;color:#64748b}
+.footer-col a:hover{color:#0ea5e9}
+.footer-about p{font-size:14px;color:#64748b;margin-top:12px;line-height:1.5}
+.footer-bottom{padding-top:24px;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#64748b}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="brand"><span class="brand-mark">B</span><span>BankSync</span></a>
+    <div class="nav-links">
+      <a href="#beneficios">Beneficios</a>
+      <a href="#integraciones">Integraciones</a>
+      <a href="#como">Como funciona</a>
+      <a href="https://banksync.fenixia.tech" class="btn btn-secondary">Ver app &rarr;</a>
+      <a href="mailto:hola@fenixia.tech?subject=Demo" class="btn btn-primary">Solicitar demo</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge"><span class="hero-badge-dot"></span>PSD2 · Enable Banking</div>
+        <h1>Banca conectada con tu <span class="highlight">contabilidad</span>, sin esfuerzo.</h1>
+        <p>BankSync sincroniza automaticamente los movimientos de tus cuentas bancarias con tu ERP. Sin Excel. Sin errores. Sin trabajo manual.</p>
+        <div class="hero-cta">
+          <a href="mailto:hola@fenixia.tech?subject=Demo" class="btn btn-primary btn-lg">Solicitar demo &rarr;</a>
+          <a href="https://banksync.fenixia.tech" class="btn btn-secondary btn-lg">Ver app</a>
+        </div>
+        <div class="hero-trust">Conecta con 200+ bancos europeos</div>
+        <div class="hero-banks"><span>BBVA</span><span>Santander</span><span>CaixaBank</span><span>Sabadell</span><span>ING</span></div>
+      </div>
+      <div class="dashboard-mock">
+        <div class="dash-header"><div class="dash-title">Cuentas bancarias · Dashboard</div><div class="dash-status">Sync activo</div></div>
+        <div class="dash-body">
+          <div class="dash-row"><div class="dash-bank bbva">BBV</div><div class="dash-meta"><div class="dash-name">BBVA</div><div class="dash-sub">ES84 **** 0191 · Sincronizado hace 12s</div></div><div class="dash-amount green">+12.450€</div></div>
+          <div class="dash-row"><div class="dash-bank san">SAN</div><div class="dash-meta"><div class="dash-name">Santander</div><div class="dash-sub">ES25 **** 3547 · Sincronizado hace 1m</div></div><div class="dash-amount">8.230€</div></div>
+          <div class="dash-row"><div class="dash-bank cai">CAI</div><div class="dash-meta"><div class="dash-name">CaixaBank</div><div class="dash-sub">ES49 **** 3554 · Sincronizado hace 3m</div></div><div class="dash-amount green">+3.450€</div></div>
+          <div class="dash-row"><div class="dash-bank sab">SAB</div><div class="dash-meta"><div class="dash-name">Sabadell</div><div class="dash-sub">ES73 **** 8108 · Sincronizado hace 5m</div></div><div class="dash-amount">15.780€</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="logos-strip">
+  <div class="container">
+    <div class="logos-label">Compatible con los ERPs que ya usas</div>
+    <div class="logos-list"><span>Velneo</span><span>Holded</span><span>Business Central</span><span>A3</span><span>Sage</span><span>Odoo</span><span>+ Norma 43</span></div>
+  </div>
+</div>
+
+<section id="beneficios">
+  <div class="container">
+    <div class="section-center">
+      <span class="section-tag">Beneficios</span>
+      <h2 class="section-title">Lo que consiguen nuestros clientes</h2>
+      <p class="section-lead">Automatizacion end-to-end entre banca y contabilidad. Tu equipo deja de perder horas en trabajo manual.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit"><div class="benefit-icon">⚡</div><h3>80% menos tiempo</h3><p>Elimina la descarga manual de extractos y la subida a tu ERP. Tu equipo se dedica a lo que aporta valor.</p></div>
+      <div class="benefit"><div class="benefit-icon">🎯</div><h3>Cero errores</h3><p>Normalizacion automatica y deteccion de duplicados. Datos limpios directamente en tu contabilidad.</p></div>
+      <div class="benefit"><div class="benefit-icon">🔒</div><h3>Seguridad PSD2</h3><p>Autorizacion oficial via Enable Banking. Nunca almacenamos credenciales. Cumplimiento total.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="integraciones" class="integrations">
+  <div class="container">
+    <div class="section-center">
+      <span class="section-tag">Integraciones</span>
+      <h2 class="section-title">Compatible con el stack que ya usas</h2>
+      <p class="section-lead">API directa con los ERPs mas usados en España. Norma 43 universal para el resto.</p>
+    </div>
+    <div class="int-grid">
+      <div class="int-card"><div class="int-logo" style="background:linear-gradient(135deg,#6366f1 0%,#4f46e5 100%)">V</div><h4>Velneo</h4><p>API nativa</p></div>
+      <div class="int-card"><div class="int-logo" style="background:linear-gradient(135deg,#10b981 0%,#059669 100%)">H</div><h4>Holded</h4><p>API nativa</p></div>
+      <div class="int-card"><div class="int-logo" style="background:linear-gradient(135deg,#0284c7 0%,#0369a1 100%)">BC</div><h4>Business Central</h4><p>API nativa</p></div>
+      <div class="int-card"><div class="int-logo" style="background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%)">43</div><h4>Norma 43</h4><p>A3, Sage, ContaPlus, Odoo</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div><div class="stat-val">80%</div><div class="stat-lbl">menos tiempo manual</div></div>
+      <div><div class="stat-val">200+</div><div class="stat-val-sub" style="display:none"></div><div class="stat-lbl">bancos europeos</div></div>
+      <div><div class="stat-val">24/7</div><div class="stat-lbl">sync continuo</div></div>
+      <div><div class="stat-val">14 dias</div><div class="stat-lbl">prueba gratis</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="como" class="steps-section">
+  <div class="container">
+    <div class="section-center">
+      <span class="section-tag">Como funciona</span>
+      <h2 class="section-title">Tres pasos. Cero configuracion compleja.</h2>
+      <p class="section-lead">En menos de 2 minutos tienes tus cuentas bancarias sincronizando con tu ERP.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Autoriza PSD2</h3><p>Acceso directo en la web de tu banco. Nosotros nunca vemos tus credenciales.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Conecta tu ERP</h3><p>API directa con Velneo, Holded, Business Central. O Norma 43 para cualquier otro.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Sync automatico</h3><p>Movimientos importados cada dia sin intervencion. Panel de control en tiempo real.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Empieza hoy a ahorrar tiempo</h2>
+      <p>Demo personalizada de 15 minutos. Trae tu banco y tu ERP. Sin permanencia, sin tarjeta.</p>
+      <a href="mailto:hola@fenixia.tech?subject=BankSync%20Demo" class="btn btn-primary btn-lg">Solicitar demo &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-about">
+        <div class="brand"><span class="brand-mark">B</span>BankSync</div>
+        <p>Banca conectada con tu contabilidad, sin esfuerzo. Hecho en España.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#integraciones">Integraciones</a></li>
+          <li><a href="https://banksync.fenixia.tech">App</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="mailto:hola@fenixia.tech">Demo</a></li>
+          <li><a href="mailto:hola@fenixia.tech">Soporte</a></li>
+          <li><a href="https://github.com/PedroFenixia/fenix-bank-sync">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="https://fenixia.tech/aviso-legal">Aviso Legal</a></li>
+          <li><a href="https://fenixia.tech/privacidad">Privacidad</a></li>
+          <li><a href="https://fenixia.tech/terminos">Terminos</a></li>
+          <li><a href="https://fenixia.tech/cookies">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2024&ndash;2026 Fenixia Solutions S.L. &mdash; CIF: B44846517</div>
+      <div><a href="https://banksync.fenixia.tech" style="color:#0ea5e9">banksync.fenixia.tech</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -3,45 +3,98 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BankSync — Variantes de landing</title>
+<title>BankSync &mdash; Variantes de landing</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,-apple-system,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
-.wrap{max-width:1100px;width:100%}
-h1{font-size:2rem;margin-bottom:8px;font-weight:700}
-.sub{color:#888;margin-bottom:40px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;padding:40px 20px}
+.wrap{max-width:1200px;margin:0 auto}
+h1{font-size:2.25rem;margin-bottom:8px;font-weight:700;letter-spacing:-0.02em}
+.sub{color:#888;margin-bottom:24px;font-size:1rem}
+.prod-link{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:linear-gradient(135deg,#fb923c,#f97316);color:#0a0a0a;font-weight:600;border-radius:10px;font-size:0.9rem;text-decoration:none;margin-bottom:40px;transition:transform .1s}
+.prod-link:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(251,146,60,0.3)}
+.prod-link::before{content:'';width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
 .card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:24px;transition:all 0.2s;text-decoration:none;color:inherit;display:block}
-.card:hover{border-color:#666;transform:translateY(-2px)}
-.card h2{font-size:1.3rem;margin-bottom:8px}
-.card .tag{display:inline-block;background:#333;padding:3px 10px;border-radius:20px;font-size:0.75rem;margin-bottom:12px;color:#aaa}
-.card p{color:#aaa;font-size:0.9rem;line-height:1.5}
-.card .cta{margin-top:16px;color:#19ffcc;font-weight:600;font-size:0.85rem}
+.card:hover{border-color:#666;transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,0.4)}
+.card h2{font-size:1.25rem;margin-bottom:8px;font-weight:700}
+.card .tag{display:inline-block;background:#262626;padding:3px 10px;border-radius:20px;font-size:0.75rem;margin-bottom:12px;color:#aaa;font-weight:500}
+.card p{color:#a3a3a3;font-size:0.88rem;line-height:1.5}
+.card .cta{margin-top:16px;color:#22c55e;font-weight:600;font-size:0.85rem}
+.tag.v1{background:#1e3a8a;color:#93c5fd}
+.tag.v2{background:#4a3621;color:#fbbf24}
+.tag.v3{background:#4c1d95;color:#c4b5fd}
+.tag.v4{background:#422006;color:#fb923c}
+.tag.v5{background:#1e1b4b;color:#a5b4fc}
+.tag.v6{background:#0c4a6e;color:#7dd3fc}
+.tag.v7{background:#3c1361;color:#e9d5ff}
+.section{margin-top:40px;padding-top:32px;border-top:1px solid #262626}
+.section-title{font-size:0.85rem;color:#666;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;font-weight:600}
+.msg-box{background:#111;border:1px solid #262626;border-radius:10px;padding:16px 20px;margin-top:48px;font-size:0.85rem;color:#a3a3a3;line-height:1.6}
+.msg-box strong{color:#fff}
 </style>
 </head>
 <body>
 <div class="wrap">
 <h1>BankSync &mdash; Variantes de landing</h1>
-<p class="sub">3 direcciones visuales para elegir. Abre cada una y compara.</p>
+<p class="sub">7 direcciones visuales con el mismo mensaje. Escoge la que mejor encaje.</p>
+<a href="https://banksync.fenixia.tech" target="_blank" class="prod-link">
+  App en produccion &rarr; banksync.fenixia.tech
+</a>
+
 <div class="grid">
-    <a href="v1-stripe.html" class="card">
-        <div class="tag">V1 &middot; Corporativo</div>
-        <h2>Stripe / Brex</h2>
-        <p>Fondo blanco, tipografia limpia, purpura tech, mockup de codigo en hero. Estilo SaaS enterprise moderno.</p>
-        <div class="cta">Ver landing &rarr;</div>
-    </a>
-    <a href="v2-editorial.html" class="card">
-        <div class="tag">V2 &middot; Editorial</div>
-        <h2>Financial Times / Revista</h2>
-        <p>Fondo crema, tipografia serif Fraunces, numeracion romana, dropcap, pull quote. Estilo financiero serio.</p>
-        <div class="cta">Ver landing &rarr;</div>
-    </a>
-    <a href="v3-brutalist.html" class="card">
-        <div class="tag">V3 &middot; Brutalist</div>
-        <h2>Anti-standard IA</h2>
-        <p>Bordes duros, colores planos naranja/amarillo, tipografia mono, marquee scrolling. Diferenciador total.</p>
-        <div class="cta">Ver landing &rarr;</div>
-    </a>
+  <a href="v1-stripe.html" class="card">
+    <div class="tag v1">V1 &middot; Corporativo</div>
+    <h2>Stripe / Brex</h2>
+    <p>Fondo blanco, tipografia limpia, purpura tech, mockup de codigo en hero. Estilo SaaS enterprise moderno.</p>
+    <div class="cta">Ver landing &rarr;</div>
+  </a>
+  <a href="v2-editorial.html" class="card">
+    <div class="tag v2">V2 &middot; Editorial</div>
+    <h2>Financial Times / Revista</h2>
+    <p>Fondo crema, tipografia serif Fraunces, numeracion romana, dropcap, pull quote. Estilo financiero serio.</p>
+    <div class="cta">Ver landing &rarr;</div>
+  </a>
+  <a href="v3-brutalist.html" class="card">
+    <div class="tag v3">V3 &middot; Brutalist</div>
+    <h2>Anti-standard IA</h2>
+    <p>Bordes duros, colores planos naranja/amarillo, tipografia mono, marquee scrolling. Diferenciador total.</p>
+    <div class="cta">Ver landing &rarr;</div>
+  </a>
+  <a href="v4-minimal.html" class="card">
+    <div class="tag v4">V4 &middot; Minimal</div>
+    <h2>Fenix IA Minimal</h2>
+    <p>Dark oscuro azulado, acento naranja Fenix IA, card hero limpio. Balance entre minimalismo y branding.</p>
+    <div class="cta">Ver landing &rarr;</div>
+  </a>
+  <a href="v5-vercel.html" class="card">
+    <div class="tag v5">V5 &middot; Tech Dark</div>
+    <h2>Vercel / Linear</h2>
+    <p>Negro puro, grid background, terminal CLI en hero, arquitectura visual, tipografia Geist. Estilo dev-first.</p>
+    <div class="cta">Ver landing &rarr;</div>
+  </a>
+  <a href="v6-corporate.html" class="card">
+    <div class="tag v6">V6 &middot; Corporate</div>
+    <h2>Corporate Light</h2>
+    <p>Fondo blanco, azul corporativo, mockup dashboard con cuentas bancarias reales, logos ERPs. Muy B2B clasico.</p>
+    <div class="cta">Ver landing &rarr;</div>
+  </a>
+  <a href="v7-fenixia.html" class="card">
+    <div class="tag v7">V7 &middot; Inicial</div>
+    <h2>Fenix IA Original</h2>
+    <p>Version inicial con naranja Fenix IA, suite modular completa, diseño generico pero completo con secciones.</p>
+    <div class="cta">Ver landing &rarr;</div>
+  </a>
+</div>
+
+<div class="msg-box">
+  <strong>Mensaje canonico</strong> (consistente en las 7 versiones):<br>
+  Tagline: <em>"Banca conectada con tu contabilidad, sin esfuerzo."</em><br>
+  Lead: <em>"BankSync sincroniza automaticamente los movimientos de tus cuentas bancarias con tu ERP. Sin Excel. Sin errores. Sin trabajo manual."</em><br>
+  Bancos: BBVA, Santander, CaixaBank, Sabadell, ING &middot; 200+ europeos<br>
+  ERPs: Velneo, Holded, Business Central + Norma 43 universal<br>
+  Pasos: Autoriza PSD2 &rarr; Conecta ERP &rarr; Sync automatico<br>
+  CTA: Demo 15 min, sin permanencia, 14 dias prueba
 </div>
 </div>
 </body>
