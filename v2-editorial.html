@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BankSync — Infraestructura entre banca y contabilidad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",sans-serif;background:#f5f0e8;color:#1a1a1a;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+.serif{font-family:"Fraunces",Georgia,serif}
+.container{max-width:1100px;margin:0 auto;padding:0 40px}
+
+/* Nav */
+nav{border-bottom:1px solid #1a1a1a;padding:20px 0;background:#f5f0e8}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;padding:0 40px}
+.logo{font-family:"Fraunces",serif;font-size:1.4rem;font-weight:700;letter-spacing:-0.02em}
+.nav-meta{font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#6b6560}
+.nav-links{display:flex;gap:32px;font-size:0.85rem}
+.nav-links a{text-decoration:none}
+.nav-links a:hover{text-decoration:underline}
+
+/* Hero */
+.hero{padding:80px 0 60px;border-bottom:1px solid #1a1a1a}
+.hero-meta{display:flex;justify-content:space-between;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:#6b6560;margin-bottom:48px}
+.hero h1{font-family:"Fraunces",serif;font-size:clamp(3rem,7vw,6rem);font-weight:600;line-height:0.95;letter-spacing:-0.04em;margin-bottom:48px;max-width:900px}
+.hero h1 em{font-style:italic;color:#8b3a3a}
+.hero-bottom{display:grid;grid-template-columns:2fr 1fr;gap:64px;padding-top:32px;border-top:1px solid #1a1a1a}
+.hero-dek{font-size:1.15rem;line-height:1.6;color:#333}
+.hero-dek::first-letter{font-family:"Fraunces",serif;font-size:3.5rem;float:left;line-height:0.9;padding-right:8px;padding-top:6px;font-weight:700}
+.hero-actions{display:flex;flex-direction:column;gap:16px;align-self:end}
+.btn{display:inline-block;padding:14px 28px;text-align:center;font-weight:500;font-size:0.9rem;text-decoration:none;transition:all 0.2s;letter-spacing:0.02em}
+.btn-solid{background:#1a1a1a;color:#f5f0e8;border:1px solid #1a1a1a}
+.btn-solid:hover{background:#8b3a3a;border-color:#8b3a3a}
+.btn-outline{background:transparent;color:#1a1a1a;border:1px solid #1a1a1a}
+.btn-outline:hover{background:#1a1a1a;color:#f5f0e8}
+
+/* Article sections */
+section{padding:80px 0;border-bottom:1px solid #1a1a1a}
+.section-label{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:#8b3a3a;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:16px}
+.section-label::before{content:"";width:40px;height:1px;background:#8b3a3a}
+h2{font-family:"Fraunces",serif;font-size:2.75rem;font-weight:600;letter-spacing:-0.02em;line-height:1.1;margin-bottom:32px;max-width:800px}
+
+/* Tres columnas */
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:48px}
+.col-item{border-top:1px solid #1a1a1a;padding-top:24px}
+.col-item .num{font-family:"Fraunces",serif;font-size:3rem;font-weight:700;color:#8b3a3a;margin-bottom:8px;line-height:1}
+.col-item h3{font-family:"Fraunces",serif;font-size:1.35rem;font-weight:600;margin-bottom:12px}
+.col-item p{font-size:0.95rem;color:#4a4540;line-height:1.7}
+
+/* Comparison table */
+.table-wrap{margin-top:48px;border:1px solid #1a1a1a}
+table{width:100%;border-collapse:collapse}
+th,td{padding:20px 24px;text-align:left;border-bottom:1px solid #1a1a1a;font-size:0.95rem}
+th{background:#1a1a1a;color:#f5f0e8;font-family:"Fraunces",serif;font-weight:600;font-size:1rem}
+tr:last-child td{border-bottom:none}
+td.bad{color:#8b3a3a}
+td.good{font-weight:500}
+
+/* Quote / pull */
+.pullquote{padding:80px 0;text-align:center;max-width:900px;margin:0 auto}
+.pullquote blockquote{font-family:"Fraunces",serif;font-size:2.5rem;font-weight:500;line-height:1.2;letter-spacing:-0.02em;font-style:italic;margin-bottom:24px}
+.pullquote cite{font-style:normal;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:#6b6560}
+
+/* Specs panel */
+.specs{display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-top:48px}
+.specs-nav{position:sticky;top:20px;align-self:start}
+.specs-nav ul{list-style:none}
+.specs-nav li{padding:12px 0;border-bottom:1px solid #c7bfb5;font-size:0.9rem;color:#6b6560;cursor:pointer}
+.specs-nav li.active{color:#1a1a1a;font-weight:600}
+.spec-block{padding:32px;background:#fff;border:1px solid #1a1a1a;margin-bottom:24px}
+.spec-block h3{font-family:"Fraunces",serif;font-size:1.5rem;margin-bottom:12px}
+.spec-block p{color:#4a4540;font-size:0.95rem}
+.spec-block ul{list-style:none;margin-top:16px}
+.spec-block li{padding:8px 0;font-size:0.9rem;color:#4a4540;border-top:1px solid #e5dfd6}
+.spec-block li:first-child{border-top:none}
+
+/* Index page style list */
+.index-list{margin-top:48px}
+.index-row{display:grid;grid-template-columns:80px 1fr 200px 120px;gap:24px;padding:24px 0;border-bottom:1px solid #c7bfb5;align-items:center;font-size:0.95rem}
+.index-row .idx{font-family:"Fraunces",serif;color:#8b3a3a;font-weight:700}
+.index-row .title{font-weight:600}
+.index-row .meta{color:#6b6560;font-size:0.85rem}
+
+/* Closing */
+.closing{text-align:center;padding:120px 0}
+.closing h2{margin:0 auto 32px}
+.closing-cta{display:inline-flex;gap:16px;margin-top:16px}
+
+/* Footer */
+footer{background:#1a1a1a;color:#a89e92;padding:48px 0;font-size:0.85rem}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-inner a{color:#a89e92;margin-right:20px}
+
+@media (max-width:768px){
+.three-col,.hero-bottom,.specs{grid-template-columns:1fr}
+.index-row{grid-template-columns:40px 1fr;gap:12px}
+.index-row .meta,.index-row span:nth-child(3){display:none}
+.nav-links,.nav-meta{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo">BankSync <span class="nav-meta" style="margin-left:12px">Numero 01 &middot; 2026</span></div>
+        <div class="nav-links">
+            <a href="#producto">Producto</a>
+            <a href="#integraciones">Integraciones</a>
+            <a href="#planes">Planes</a>
+            <a href="https://app.banksync.fenixia.tech">Entrar</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero" style="border-top:none">
+    <div class="container">
+        <div class="hero-meta">
+            <span>Volumen 01 &middot; Primavera 2026</span>
+            <span>Sincronizacion bancaria automatizada</span>
+            <span>Madrid</span>
+        </div>
+        <h1 class="serif">La infraestructura que conecta <em>banca</em> y <em>contabilidad</em>.</h1>
+        <div class="hero-bottom">
+            <p class="hero-dek">BankSync resuelve el problema mas ignorado de la contabilidad moderna: el traspaso manual de informacion desde el banco hasta el ERP. Conectamos cuentas via PSD2, normalizamos los movimientos, y los entregamos listos al sistema contable de cada cliente. Sin hojas de calculo. Sin descargas. Sin errores.</p>
+            <div class="hero-actions">
+                <a href="#contacto" class="btn btn-solid">Solicitar demo &rarr;</a>
+                <a href="#producto" class="btn btn-outline">Leer el producto</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="producto">
+    <div class="container">
+        <div class="section-label">I &middot; El producto</div>
+        <h2 class="serif">Una capa de software entre dos mundos que nunca se hablaron bien.</h2>
+        <p style="font-size:1.1rem;max-width:780px;color:#4a4540">Durante decadas, las empresas han reconciliado manualmente los movimientos bancarios con su contabilidad. BankSync automatiza ese proceso completo con tres bloques tecnicos simples, disenados para integrarse con el stack existente de cada negocio.</p>
+        <div class="three-col">
+            <div class="col-item">
+                <div class="num">01</div>
+                <h3 class="serif">Conexion</h3>
+                <p>PSD2 / Open Banking a traves de Enable Banking. Soporte para 200+ bancos europeos. Autenticacion directa en el banco, sin custodia de credenciales.</p>
+            </div>
+            <div class="col-item">
+                <div class="num">02</div>
+                <h3 class="serif">Normalizacion</h3>
+                <p>Cada banco expone los movimientos de forma distinta. BankSync los transforma en un modelo unificado, listo para cualquier ERP.</p>
+            </div>
+            <div class="col-item">
+                <div class="num">03</div>
+                <h3 class="serif">Integracion</h3>
+                <p>API directa con Velneo, Holded, Business Central. Exportacion Norma 43 universal para el resto de ERPs del mercado.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-label">II &middot; El problema</div>
+        <h2 class="serif">El trabajo manual que todavia hace tu equipo, y por que.</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:30%">Tarea</th>
+                        <th>Antes</th>
+                        <th>Con BankSync</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Descarga extractos</strong></td>
+                        <td class="bad">Entrar en cada banco, descargar ficheros</td>
+                        <td class="good">Automatico, cada dia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Formato</strong></td>
+                        <td class="bad">Convertir Norma 43 / CSV / PDF</td>
+                        <td class="good">Normalizado para tu ERP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carga al ERP</strong></td>
+                        <td class="bad">Importacion manual, asistida por personal</td>
+                        <td class="good">API directa o fichero listo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Validacion</strong></td>
+                        <td class="bad">Revisar duplicados, errores y saltos</td>
+                        <td class="good">Deteccion automatica</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Frecuencia</strong></td>
+                        <td class="bad">Mensual, con retraso y acumulacion</td>
+                        <td class="good">Diaria, sin intervencion</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="pullquote">
+    <div class="container">
+        <blockquote class="serif">&ldquo;No vendemos una conexion bancaria. Vendemos tiempo recuperado y errores eliminados.&rdquo;</blockquote>
+        <cite>Fenix IA &middot; BankSync</cite>
+    </div>
+</section>
+
+<section id="integraciones">
+    <div class="container">
+        <div class="section-label">III &middot; Integraciones</div>
+        <h2 class="serif">ERPs compatibles, ordenados por madurez de integracion.</h2>
+        <div class="index-list">
+            <div class="index-row">
+                <div class="idx">01</div>
+                <div>
+                    <div class="title">Velneo</div>
+                    <div class="meta">API directa vDataClient</div>
+                </div>
+                <div>vDataClient REST</div>
+                <div style="color:#0e7c3a;font-weight:600">Disponible</div>
+            </div>
+            <div class="index-row">
+                <div class="idx">02</div>
+                <div>
+                    <div class="title">Norma 43</div>
+                    <div class="meta">Formato universal banca espanola</div>
+                </div>
+                <div>Fichero .n43</div>
+                <div style="color:#0e7c3a;font-weight:600">Disponible</div>
+            </div>
+            <div class="index-row">
+                <div class="idx">03</div>
+                <div>
+                    <div class="title">Holded</div>
+                    <div class="meta">API REST publica</div>
+                </div>
+                <div>REST + OAuth</div>
+                <div style="color:#0e7c3a;font-weight:600">Disponible</div>
+            </div>
+            <div class="index-row">
+                <div class="idx">04</div>
+                <div>
+                    <div class="title">Microsoft Business Central</div>
+                    <div class="meta">ERP cloud enterprise</div>
+                </div>
+                <div>REST + OAuth Azure</div>
+                <div style="color:#b45309;font-weight:600">En desarrollo</div>
+            </div>
+            <div class="index-row">
+                <div class="idx">05</div>
+                <div>
+                    <div class="title">Microsoft Dynamics NAV</div>
+                    <div class="meta">Navision desktop on-premise</div>
+                </div>
+                <div>OData / SOAP</div>
+                <div style="color:#b45309;font-weight:600">En desarrollo</div>
+            </div>
+            <div class="index-row">
+                <div class="idx">06</div>
+                <div>
+                    <div class="title">SAP Business One</div>
+                    <div class="meta">Solicitar roadmap</div>
+                </div>
+                <div>Service Layer</div>
+                <div style="color:#6b6560">Roadmap 2027</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="planes">
+    <div class="container">
+        <div class="section-label">IV &middot; Planes</div>
+        <h2 class="serif">Precios transparentes. Sin permanencia.</h2>
+        <div class="three-col" style="margin-top:48px">
+            <div class="col-item">
+                <div style="font-family:'Fraunces',serif;font-size:0.9rem;color:#8b3a3a;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px">Pyme</div>
+                <div class="serif" style="font-size:2.5rem;font-weight:700;margin-bottom:4px">49 EUR<span style="font-size:1rem;color:#6b6560;font-weight:400">/mes</span></div>
+                <p style="margin-top:16px;font-size:0.9rem">Hasta 3 cuentas bancarias. Sync diaria. Exportacion Norma 43. Soporte por email.</p>
+            </div>
+            <div class="col-item" style="background:#1a1a1a;color:#f5f0e8;margin:-24px -24px 0;padding:48px 24px 24px">
+                <div style="font-family:'Fraunces',serif;font-size:0.9rem;color:#d4a27a;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px">Asesoria &middot; Recomendado</div>
+                <div class="serif" style="font-size:2.5rem;font-weight:700;margin-bottom:4px">199 EUR<span style="font-size:1rem;color:#a89e92;font-weight:400">/mes</span></div>
+                <p style="margin-top:16px;font-size:0.9rem;color:#c7bfb5">Hasta 20 clientes. Multi-banco ilimitado. API ERP. Soporte prioritario. Onboarding dedicado.</p>
+            </div>
+            <div class="col-item">
+                <div style="font-family:'Fraunces',serif;font-size:0.9rem;color:#8b3a3a;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px">Enterprise</div>
+                <div class="serif" style="font-size:2.5rem;font-weight:700;margin-bottom:4px">A medida</div>
+                <p style="margin-top:16px;font-size:0.9rem">Clientes ilimitados. Integracion custom (Navision, SAP). SLA. Account manager dedicado.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="closing" id="contacto">
+    <div class="container">
+        <div class="section-label" style="justify-content:center">V &middot; Empieza hoy</div>
+        <h2 class="serif">Una demo de 15 minutos cambia como miras tu contabilidad.</h2>
+        <div class="closing-cta">
+            <a href="mailto:info@fenixia.tech?subject=Demo%20BankSync" class="btn btn-solid">Solicitar demo &rarr;</a>
+            <a href="https://app.banksync.fenixia.tech" class="btn btn-outline">Acceder a la app</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-inner">
+        <div>
+            <div class="serif" style="color:#f5f0e8;font-size:1.2rem;margin-bottom:4px">BankSync</div>
+            <div>Fenixia Solutions S.L. &mdash; CIF B44846517 &middot; Madrid</div>
+        </div>
+        <div>
+            <a href="https://fenixia.tech/aviso-legal">Aviso Legal</a>
+            <a href="https://fenixia.tech/privacidad">Privacidad</a>
+            <a href="https://fenixia.tech/terminos">Terminos</a>
+            <a href="https://fenixia.tech/cookies">Cookies</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

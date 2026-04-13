@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BankSync — Sincronizacion bancaria para tu ERP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",system-ui,sans-serif;background:#fff;color:#0a2540;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+
+/* Nav */
+nav{position:sticky;top:0;background:#fff;border-bottom:1px solid #eef0f3;z-index:50;padding:18px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 32px}
+.logo{font-weight:800;font-size:1.1rem;letter-spacing:-0.02em}
+.logo-dot{color:#635bff}
+.nav-links{display:flex;gap:32px;font-size:0.9rem;font-weight:500;color:#425466}
+.nav-links a:hover{color:#0a2540}
+.btn{display:inline-block;padding:10px 20px;border-radius:999px;font-weight:600;font-size:0.9rem;transition:all 0.15s}
+.btn-primary{background:#635bff;color:#fff}
+.btn-primary:hover{background:#5248d9}
+.btn-ghost{color:#635bff}
+.btn-ghost:hover{color:#5248d9}
+
+/* Hero */
+.hero{padding:120px 0 100px;background:linear-gradient(180deg,#fafbfc 0%,#fff 100%);position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero h1{font-size:3.5rem;font-weight:800;line-height:1.05;letter-spacing:-0.04em;margin-bottom:24px}
+.hero h1 span{background:linear-gradient(90deg,#635bff 0%,#00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p.lead{font-size:1.15rem;color:#425466;margin-bottom:32px;max-width:500px}
+.hero-cta{display:flex;gap:12px;align-items:center}
+.hero-trust{margin-top:48px;font-size:0.8rem;color:#697386;text-transform:uppercase;letter-spacing:0.1em;font-weight:600}
+.hero-banks{display:flex;gap:32px;margin-top:16px;align-items:center;flex-wrap:wrap}
+.hero-banks div{font-weight:600;color:#425466;font-size:0.95rem}
+
+/* Code mockup */
+.code-mockup{background:#0a2540;border-radius:12px;padding:24px;font-family:"SF Mono",Menlo,monospace;font-size:0.85rem;color:#a3acb9;box-shadow:0 50px 100px -20px rgba(50,50,93,0.25),0 30px 60px -30px rgba(0,0,0,0.3)}
+.code-mockup .kw{color:#f8b4c8}
+.code-mockup .str{color:#9ddca4}
+.code-mockup .com{color:#647892;font-style:italic}
+.code-mockup .num{color:#ffca91}
+.code-dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:6px}
+.code-header{margin-bottom:16px;opacity:0.8}
+
+/* Sections */
+section.bordered{border-bottom:1px solid #eef0f3}
+.section-head{text-align:center;max-width:720px;margin:0 auto 64px}
+.section-head .eyebrow{color:#635bff;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px}
+.section-head h2{font-size:2.5rem;font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px}
+.section-head p{font-size:1.1rem;color:#425466}
+
+/* Problem */
+.problem{padding:100px 0}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.problem-col{background:#fafbfc;padding:40px;border-radius:16px;border:1px solid #eef0f3}
+.problem-col h3{font-size:1.25rem;font-weight:700;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.problem-col.bad h3::before{content:"—";background:#fde8e8;color:#c81e1e;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.problem-col.good h3::before{content:"+";background:#e3f9e5;color:#0e7c3a;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.problem-col ul{list-style:none}
+.problem-col li{padding:10px 0;color:#425466;font-size:0.95rem;border-bottom:1px solid #eef0f3}
+.problem-col li:last-child{border:none}
+
+/* How */
+.how{padding:100px 0;background:#fafbfc}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.step-card{background:#fff;padding:32px;border-radius:16px;border:1px solid #eef0f3}
+.step-num{font-size:0.75rem;font-weight:700;color:#635bff;letter-spacing:0.1em;margin-bottom:12px}
+.step-card h3{font-size:1.25rem;font-weight:700;margin-bottom:12px;letter-spacing:-0.02em}
+.step-card p{color:#425466;font-size:0.95rem}
+
+/* Benefits metrics */
+.metrics{padding:100px 0}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.metric{text-align:center}
+.metric .num{font-size:3rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(90deg,#635bff 0%,#00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.metric .label{color:#425466;font-size:0.95rem;font-weight:500}
+
+/* Pricing */
+.pricing{padding:100px 0;background:#fafbfc}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.price-card{background:#fff;padding:40px;border-radius:16px;border:1px solid #eef0f3;position:relative}
+.price-card.featured{border:2px solid #635bff;box-shadow:0 20px 40px -10px rgba(99,91,255,0.15)}
+.price-card .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#635bff;color:#fff;padding:4px 16px;border-radius:999px;font-size:0.75rem;font-weight:700}
+.price-card h3{font-size:1rem;font-weight:700;color:#635bff;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px}
+.price-card .amount{font-size:2.5rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:4px}
+.price-card .amount .unit{font-size:1rem;color:#697386;font-weight:500}
+.price-card .desc{color:#425466;font-size:0.9rem;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid #eef0f3}
+.price-card ul{list-style:none;margin-bottom:32px}
+.price-card li{padding:8px 0;color:#425466;font-size:0.9rem;display:flex;gap:8px;align-items:flex-start}
+.price-card li::before{content:"\2713";color:#635bff;font-weight:700;flex-shrink:0}
+.price-card .btn{width:100%;text-align:center}
+
+/* CTA */
+.cta{padding:100px 0;text-align:center}
+.cta h2{font-size:2.5rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:16px}
+.cta p{color:#425466;font-size:1.1rem;margin-bottom:32px}
+
+/* Footer */
+footer{background:#0a2540;color:#a3acb9;padding:48px 0 32px;font-size:0.85rem}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+.footer-inner a{color:#a3acb9;margin-right:24px}
+.footer-inner a:hover{color:#fff}
+
+@media (max-width:768px){
+.hero-grid,.problem-grid,.metrics-grid,.pricing-grid,.steps{grid-template-columns:1fr}
+.hero h1{font-size:2.5rem}
+.nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo">Bank<span class="logo-dot">Sync</span></div>
+        <div class="nav-links">
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#precios">Precios</a>
+            <a href="#integraciones">Integraciones</a>
+            <a href="https://app.banksync.fenixia.tech">Acceder</a>
+        </div>
+        <a href="#contacto" class="btn btn-primary">Solicitar demo</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-grid">
+            <div>
+                <h1>Banca conectada con tu <span>contabilidad</span>, sin esfuerzo.</h1>
+                <p class="lead">BankSync sincroniza automaticamente los movimientos de tus cuentas bancarias con tu ERP. Sin Excel. Sin errores. Sin trabajo manual.</p>
+                <div class="hero-cta">
+                    <a href="#contacto" class="btn btn-primary">Solicitar demo &rarr;</a>
+                    <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
+                </div>
+                <div class="hero-trust">Bancos soportados</div>
+                <div class="hero-banks">
+                    <div>Sabadell</div>
+                    <div>BBVA</div>
+                    <div>CaixaBank</div>
+                    <div>Santander</div>
+                    <div>+200 EU</div>
+                </div>
+            </div>
+            <div class="code-mockup">
+                <div class="code-header">
+                    <span class="code-dot" style="background:#ff5f57"></span>
+                    <span class="code-dot" style="background:#ffbd2e"></span>
+                    <span class="code-dot" style="background:#28c941"></span>
+                </div>
+<pre>
+<span class="com"># Sync automatico a tu ERP</span>
+<span class="kw">POST</span> /api/v1/sync
+<span class="kw">Content-Type:</span> application/json
+
+{
+  <span class="str">"bank"</span>: <span class="str">"bbva"</span>,
+  <span class="str">"account"</span>: <span class="str">"ES91 2100 0418..."</span>,
+  <span class="str">"erp"</span>: <span class="str">"velneo"</span>,
+  <span class="str">"period"</span>: <span class="str">"2026-04"</span>
+}
+
+<span class="com">&gt; 18 transacciones importadas</span>
+<span class="com">&gt; 0 errores</span>
+<span class="com">&gt; tiempo: <span class="num">2.4s</span></span></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="problem bordered">
+    <div class="container">
+        <div class="section-head">
+            <div class="eyebrow">El problema</div>
+            <h2>Cada mes pierdes horas en trabajo manual</h2>
+        </div>
+        <div class="problem-grid">
+            <div class="problem-col bad">
+                <h3>Sin BankSync</h3>
+                <ul>
+                    <li>Entrar en cada banco y descargar extractos</li>
+                    <li>Convertir Norma 43 / CSV a formato del ERP</li>
+                    <li>Importar manualmente al sistema contable</li>
+                    <li>Revisar errores uno por uno</li>
+                    <li>Repetir todos los dias laborables</li>
+                </ul>
+            </div>
+            <div class="problem-col good">
+                <h3>Con BankSync</h3>
+                <ul>
+                    <li>Conexion PSD2 unica por banco</li>
+                    <li>Sincronizacion automatica cada dia</li>
+                    <li>Datos directamente en tu ERP</li>
+                    <li>Validacion automatica de duplicados</li>
+                    <li>Tu equipo se centra en lo que importa</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how" id="como-funciona">
+    <div class="container">
+        <div class="section-head">
+            <div class="eyebrow">Como funciona</div>
+            <h2>Tres pasos. Cero configuracion compleja.</h2>
+        </div>
+        <div class="steps">
+            <div class="step-card">
+                <div class="step-num">PASO 01</div>
+                <h3>Conecta tu banco</h3>
+                <p>Autorizas el acceso PSD2 desde la web de tu banco. Nosotros nunca vemos tus credenciales.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">PASO 02</div>
+                <h3>Configura tu ERP</h3>
+                <p>API directa con Velneo, Holded, Business Central. O exporta Norma 43 para cualquier otro.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">PASO 03</div>
+                <h3>Sincroniza automaticamente</h3>
+                <p>Los movimientos se importan cada dia sin intervencion. Panel de control en tiempo real.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="metrics bordered">
+    <div class="container">
+        <div class="section-head">
+            <div class="eyebrow">Resultados</div>
+            <h2>Lo que consiguen nuestros clientes</h2>
+        </div>
+        <div class="metrics-grid">
+            <div class="metric">
+                <div class="num">80%</div>
+                <div class="label">Menos tiempo en tareas manuales</div>
+            </div>
+            <div class="metric">
+                <div class="num">2min</div>
+                <div class="label">Setup por banco</div>
+            </div>
+            <div class="metric">
+                <div class="num">200+</div>
+                <div class="label">Bancos europeos soportados</div>
+            </div>
+            <div class="metric">
+                <div class="num">&lt;24h</div>
+                <div class="label">Implementacion completa</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing" id="precios">
+    <div class="container">
+        <div class="section-head">
+            <div class="eyebrow">Precios</div>
+            <h2>Planes para cada tamano</h2>
+            <p>Sin permanencia. 14 dias de prueba gratis.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>PYME</h3>
+                <div class="amount">49<span class="unit"> EUR/mes</span></div>
+                <div class="desc">Empresas pequenas con 1-3 cuentas bancarias</div>
+                <ul>
+                    <li>Hasta 3 conexiones bancarias</li>
+                    <li>Sincronizacion diaria</li>
+                    <li>Exportacion Norma 43</li>
+                    <li>Soporte por email</li>
+                </ul>
+                <a href="#contacto" class="btn btn-ghost" style="border:1px solid #635bff">Empezar</a>
+            </div>
+            <div class="price-card featured">
+                <div class="badge">MAS POPULAR</div>
+                <h3>ASESORIA</h3>
+                <div class="amount">199<span class="unit"> EUR/mes</span></div>
+                <div class="desc">Gestion multi-cliente para asesorias contables</div>
+                <ul>
+                    <li>Hasta 20 clientes</li>
+                    <li>Multi-banco ilimitado</li>
+                    <li>API integracion ERP</li>
+                    <li>Soporte prioritario</li>
+                    <li>Onboarding dedicado</li>
+                </ul>
+                <a href="#contacto" class="btn btn-primary">Solicitar demo</a>
+            </div>
+            <div class="price-card">
+                <h3>ENTERPRISE</h3>
+                <div class="amount">A medida</div>
+                <div class="desc">Integraciones custom Business Central, SAP, Navision</div>
+                <ul>
+                    <li>Clientes ilimitados</li>
+                    <li>Adaptadores ERP custom</li>
+                    <li>SLA y soporte 24/7</li>
+                    <li>Account manager dedicado</li>
+                </ul>
+                <a href="#contacto" class="btn btn-ghost" style="border:1px solid #635bff">Contactar</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta" id="contacto">
+    <div class="container">
+        <h2>Empieza hoy a ahorrar tiempo.</h2>
+        <p>Agenda una demo de 15 minutos y ve BankSync en accion con tu banco.</p>
+        <a href="mailto:info@fenixia.tech?subject=Demo%20BankSync" class="btn btn-primary">Solicitar demo &rarr;</a>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-inner">
+        <div>
+            <div class="logo" style="color:#fff;margin-bottom:8px">Bank<span class="logo-dot">Sync</span></div>
+            <div>Fenixia Solutions S.L. &mdash; CIF B44846517</div>
+        </div>
+        <div>
+            <a href="https://fenixia.tech/aviso-legal">Aviso Legal</a>
+            <a href="https://fenixia.tech/privacidad">Privacidad</a>
+            <a href="https://fenixia.tech/terminos">Terminos</a>
+            <a href="https://fenixia.tech/cookies">Cookies</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
