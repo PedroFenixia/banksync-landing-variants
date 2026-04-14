@@ -3,7 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BankSync // Conecta tu banco con tu ERP</title>
+<!-- BS-SEO -->
+<title>BankSync · Sincronización bancaria automática para tu ERP</title>
+<meta name="description" content="Conecta tu banco a tu ERP vía PSD2. Importa movimientos automáticamente a Velneo, Holded o Norma 43. Sin Excel, sin errores. Demo de 15 minutos.">
+<meta name="keywords" content="sincronización bancaria automática, PSD2 España, conexión banco ERP, Norma 43, Velneo, Holded, Business Central, automatización contable, asesorías, Enable Banking">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<link rel="canonical" href="https://banksync.fenixia.tech/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://banksync.fenixia.tech/">
+<meta property="og:title" content="BankSync · Sincronización bancaria automática para tu ERP">
+<meta property="og:description" content="Conecta tu banco a tu ERP vía PSD2. Sin Excel, sin errores. Demo de 15 minutos.">
+<meta property="og:image" content="https://banksync.fenixia.tech/og-image.png">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Fenix IA BankSync">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BankSync · Sincronización bancaria automática para tu ERP">
+<meta name="twitter:description" content="Conecta tu banco a tu ERP vía PSD2. Sin Excel, sin errores.">
+<meta name="twitter:image" content="https://banksync.fenixia.tech/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BankSync","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Sincronización bancaria automática PSD2 para Velneo, Holded, Business Central y Norma 43. Para asesorías y pymes en España.","url":"https://banksync.fenixia.tech/","inLanguage":"es-ES","author":{"@type":"Organization","name":"Fenixia Solutions S.L.","url":"https://fenixia.tech","taxID":"B44846517"}}
+</script>
+<!-- /BS-SEO -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -164,7 +184,7 @@ footer{background:#000;color:#fafaf7;padding:40px 48px}
             <a href="#precio">./precios</a>
             <a href="https://app.banksync.fenixia.tech">./app</a>
         </div>
-        <a href="#demo" class="nav-cta">SOLICITAR DEMO</a>
+        <a href="#demo" class="nav-cta" onclick="bsOpen();return false">VER DEMO (15 MIN)</a>
     </div>
 </nav>
 
@@ -173,14 +193,14 @@ footer{background:#000;color:#fafaf7;padding:40px 48px}
         <div class="hero-left">
             <div class="hero-tag">STATUS: SINCRONIZANDO</div>
             <h1>Deja de <s>descargar</s> <u>extractos</u>. Automatiza tu banca.</h1>
-            <p class="hero-sub">BankSync conecta tus cuentas bancarias con tu ERP y sincroniza los movimientos automaticamente. Todos los dias. Sin intervencion manual.</p>
+            <p class="hero-sub">BankSync conecta tus cuentas bancarias con tu ERP vía PSD2 y sincroniza los movimientos cada día. Sin Excel. Sin errores. Sin tocar un archivo.</p>
             <div class="hero-checks">
                 <div>Sin Excel</div>
                 <div>Sin errores manuales</div>
                 <div>Sin perdida de tiempo</div>
             </div>
             <div class="hero-cta">
-                <a href="#demo" class="btn btn-primary">SOLICITAR DEMO &rarr;</a>
+                <a href="#demo" class="btn btn-primary" onclick="bsOpen();return false">VER DEMO (15 MIN)</a>
                 <a href="#como" class="btn btn-secondary">VER COMO FUNCIONA</a>
             </div>
         </div>
@@ -361,7 +381,7 @@ footer{background:#000;color:#fafaf7;padding:40px 48px}
                 <li>Soporte por email</li>
                 <li>14 dias prueba gratis</li>
             </ul>
-            <a href="#demo" class="btn btn-secondary">EMPEZAR</a>
+            <a href="#demo" class="btn btn-secondary" onclick="bsOpen();return false">EMPEZAR</a>
         </div>
         <div class="price featured">
             <div class="price-badge">POPULAR</div>
@@ -375,7 +395,7 @@ footer{background:#000;color:#fafaf7;padding:40px 48px}
                 <li>Soporte prioritario</li>
                 <li>Onboarding dedicado</li>
             </ul>
-            <a href="#demo" class="btn btn-primary">SOLICITAR DEMO</a>
+            <a href="#demo" class="btn btn-primary" onclick="bsOpen();return false">VER DEMO (15 MIN)</a>
         </div>
         <div class="price">
             <div class="tier">ENTERPRISE</div>
@@ -388,7 +408,7 @@ footer{background:#000;color:#fafaf7;padding:40px 48px}
                 <li>Soporte 24/7</li>
                 <li>Account manager</li>
             </ul>
-            <a href="#demo" class="btn btn-secondary">CONTACTAR</a>
+            <a href="#demo" class="btn btn-secondary" onclick="bsOpen();return false">CONTACTAR</a>
         </div>
     </div>
 </section>
@@ -396,7 +416,7 @@ footer{background:#000;color:#fafaf7;padding:40px 48px}
 <section class="cta" id="demo">
     <h2>Banca conectada.<br>Contabilidad, sola.</h2>
     <p>&gt; Demo personalizada de 15min. Trae tu banco y tu ERP.</p>
-    <a href="mailto:info@fenixia.tech?subject=Demo%20BankSync" class="btn btn-primary">SOLICITAR DEMO &rarr;</a>
+    <a href="#demo" onclick="bsOpen();return false" class="btn btn-primary">VER DEMO (15 MIN)</a>
 </section>
 
 <footer>
@@ -414,5 +434,96 @@ footer{background:#000;color:#fafaf7;padding:40px 48px}
     </div>
 </footer>
 
+<!-- BS-MODAL -->
+<style>
+  .bs-modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:16px}
+  .bs-modal.open{display:flex}
+  .bs-modal-backdrop{position:absolute;inset:0;background:rgba(8,12,20,0.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .bs-modal-box{position:relative;background:#fff;color:#0f172a;border-radius:16px;padding:32px 28px 28px;width:100%;max-width:440px;box-shadow:0 24px 60px rgba(0,0,0,.3);font-family:system-ui,-apple-system,sans-serif}
+  .bs-modal-close{position:absolute;top:10px;right:12px;background:transparent;border:0;font-size:26px;color:#64748b;cursor:pointer;line-height:1;padding:4px 8px}
+  .bs-modal-close:hover{color:#0f172a}
+  .bs-modal-box h3{font-size:22px;font-weight:700;margin:0 0 8px;color:#0f172a;line-height:1.2}
+  .bs-modal-box .bs-sub{font-size:14px;color:#64748b;margin-bottom:20px}
+  .bs-modal-box label{display:block;font-size:12px;color:#475569;font-weight:600;margin-top:14px;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em}
+  .bs-modal-box input[type=text],.bs-modal-box input[type=email],.bs-modal-box input[type=tel]{width:100%;padding:10px 12px;border:1px solid #e2e8f0;border-radius:8px;font-size:14px;font-family:inherit;background:#fafafa;color:#0f172a;transition:border-color .15s,box-shadow .15s}
+  .bs-modal-box input:focus{outline:0;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12);background:#fff}
+  .bs-check{display:flex;align-items:flex-start;gap:8px;margin-top:16px;font-size:12px;color:#475569;font-weight:400;text-transform:none;letter-spacing:normal}
+  .bs-check input{margin-top:3px;accent-color:#2563eb}
+  .bs-check a{color:#2563eb;text-decoration:underline}
+  .bs-modal-box button[type=submit]{width:100%;margin-top:20px;padding:12px;border:0;border-radius:10px;background:#0f172a;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s,transform .1s}
+  .bs-modal-box button[type=submit]:hover:not(:disabled){background:#1e293b;transform:translateY(-1px)}
+  .bs-modal-box button[type=submit]:disabled{opacity:.6;cursor:wait}
+  .bs-success{text-align:center;padding:16px 0}
+  .bs-success .bs-check-icon{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:#10b981;color:#fff;font-size:24px;margin-bottom:12px}
+  .bs-success h4{font-size:18px;color:#0f172a;margin-bottom:6px}
+  .bs-success p{color:#64748b;font-size:14px}
+  .bs-error-msg{background:#fee2e2;color:#b91c1c;padding:10px 12px;border-radius:8px;font-size:13px;margin-top:14px}
+</style>
+<div id="bs-modal" class="bs-modal" role="dialog" aria-modal="true" aria-labelledby="bs-modal-title" aria-hidden="true">
+  <div class="bs-modal-backdrop" onclick="bsClose()"></div>
+  <div class="bs-modal-box">
+    <button type="button" class="bs-modal-close" onclick="bsClose()" aria-label="Cerrar">×</button>
+    <div id="bs-form-wrap">
+      <h3 id="bs-modal-title">Ver demo en 15 minutos</h3>
+      <p class="bs-sub">Trae tu banco y tu ERP. Sin permanencia, sin tarjeta.</p>
+      <form id="bs-form" onsubmit="bsSubmit(event)">
+        <label for="bs-name">Nombre</label>
+        <input id="bs-name" name="name" type="text" required autocomplete="name">
+        <label for="bs-email">Email de trabajo</label>
+        <input id="bs-email" name="email" type="email" required autocomplete="email">
+        <label for="bs-company">Empresa</label>
+        <input id="bs-company" name="company" type="text" autocomplete="organization">
+        <label class="bs-check">
+          <input type="checkbox" name="privacy" required>
+          <span>Acepto la <a href="https://fenixia.tech/privacidad" target="_blank" rel="noopener">política de privacidad</a>.</span>
+        </label>
+        <div id="bs-error" class="bs-error-msg" hidden></div>
+        <button type="submit">Ver demo (15 min)</button>
+      </form>
+    </div>
+    <div id="bs-success" class="bs-success" hidden>
+      <div class="bs-check-icon">✓</div>
+      <h4>Lead recibido</h4>
+      <p>Te contactamos en menos de 48 horas laborables. Si es urgente: <a href="mailto:hola@fenixia.tech" style="color:#2563eb">hola@fenixia.tech</a>.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  window.bsOpen=function(){var m=document.getElementById('bs-modal');m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';var f=document.getElementById('bs-name');if(f)f.focus()};
+  window.bsClose=function(){var m=document.getElementById('bs-modal');m.classList.remove('open');m.setAttribute('aria-hidden','true');document.body.style.overflow=''};
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')bsClose()});
+  window.bsSubmit=async function(e){
+    e.preventDefault();
+    var f=e.target;
+    var btn=f.querySelector('button[type=submit]');
+    var err=document.getElementById('bs-error');
+    err.hidden=true; err.textContent='';
+    btn.disabled=true; btn.textContent='Enviando…';
+    try{
+      var resp=await fetch('https://fenix-leads-proxy.proveedores-702.workers.dev',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          name:f.name.value.trim(),
+          email:f.email.value.trim(),
+          company:f.company.value.trim(),
+          product:'BankSync',
+          source:'banksync-v3-brutalist',
+          privacy_accepted:f.privacy.checked,
+          privacy_accepted_at:new Date().toISOString()
+        })
+      });
+      if(!resp.ok) throw new Error('HTTP '+resp.status);
+      document.getElementById('bs-form-wrap').hidden=true;
+      document.getElementById('bs-success').hidden=false;
+    }catch(ex){
+      err.textContent='No pudimos enviar el formulario. Escríbenos a hola@fenixia.tech.';
+      err.hidden=false;
+      btn.disabled=false; btn.textContent='Ver demo (15 min)';
+    }
+  };
+})();
+</script>
+<!-- /BS-MODAL -->
 </body>
 </html>

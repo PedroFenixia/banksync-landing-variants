@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /v1-stripe.html
+Allow: /v2-editorial.html
+Allow: /v3-brutalist.html
+Allow: /v4-minimal.html
+Allow: /v5-vercel.html
+Allow: /v6-corporate.html
+Allow: /v7-fenixia.html
+Disallow: /
+
+Sitemap: https://pedrofenixia.github.io/banksync-landing-variants/sitemap.xml

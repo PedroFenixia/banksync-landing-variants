@@ -3,98 +3,126 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BankSync &mdash; Variantes de landing</title>
+<title>BankSync · A/B de variantes</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://banksync.fenixia.tech/">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;padding:40px 20px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;padding:40px 20px;line-height:1.55}
 .wrap{max-width:1200px;margin:0 auto}
 h1{font-size:2.25rem;margin-bottom:8px;font-weight:700;letter-spacing:-0.02em}
-.sub{color:#888;margin-bottom:24px;font-size:1rem}
-.prod-link{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:linear-gradient(135deg,#fb923c,#f97316);color:#0a0a0a;font-weight:600;border-radius:10px;font-size:0.9rem;text-decoration:none;margin-bottom:40px;transition:transform .1s}
-.prod-link:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(251,146,60,0.3)}
-.prod-link::before{content:'';width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+.sub{color:#a3a3a3;margin-bottom:24px;font-size:1rem;max-width:720px}
+.prod-link{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#0a0a0a;font-weight:600;border-radius:10px;font-size:0.9rem;text-decoration:none;margin-bottom:12px;margin-right:10px;transition:transform .1s}
+.prod-link:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(34,197,94,0.3)}
+.prod-link::before{content:'';width:8px;height:8px;border-radius:50%;background:#0a0a0a;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.repo-link{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:transparent;border:1px solid #333;color:#ededed;font-weight:500;border-radius:10px;font-size:0.9rem;text-decoration:none;margin-bottom:40px;transition:border-color .15s}
+.repo-link:hover{border-color:#666}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
-.card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:24px;transition:all 0.2s;text-decoration:none;color:inherit;display:block}
-.card:hover{border-color:#666;transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,0.4)}
+.card{background:#141414;border:1px solid #262626;border-radius:12px;padding:24px;transition:all 0.2s;text-decoration:none;color:inherit;display:block}
+.card:hover{border-color:#525252;transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,0.5)}
 .card h2{font-size:1.25rem;margin-bottom:8px;font-weight:700}
 .card .tag{display:inline-block;background:#262626;padding:3px 10px;border-radius:20px;font-size:0.75rem;margin-bottom:12px;color:#aaa;font-weight:500}
 .card p{color:#a3a3a3;font-size:0.88rem;line-height:1.5}
 .card .cta{margin-top:16px;color:#22c55e;font-weight:600;font-size:0.85rem}
-.tag.v1{background:#1e3a8a;color:#93c5fd}
-.tag.v2{background:#4a3621;color:#fbbf24}
-.tag.v3{background:#4c1d95;color:#c4b5fd}
-.tag.v4{background:#422006;color:#fb923c}
-.tag.v5{background:#1e1b4b;color:#a5b4fc}
-.tag.v6{background:#0c4a6e;color:#7dd3fc}
-.tag.v7{background:#3c1361;color:#e9d5ff}
-.section{margin-top:40px;padding-top:32px;border-top:1px solid #262626}
-.section-title{font-size:0.85rem;color:#666;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;font-weight:600}
-.msg-box{background:#111;border:1px solid #262626;border-radius:10px;padding:16px 20px;margin-top:48px;font-size:0.85rem;color:#a3a3a3;line-height:1.6}
-.msg-box strong{color:#fff}
+.tag.v1{background:#0f2540;color:#93c5fd}
+.tag.v2{background:#3a2412;color:#fbbf24}
+.tag.v3{background:#2d1068;color:#c4b5fd}
+.tag.v4{background:#3a1b08;color:#fb923c}
+.tag.v5{background:#18143d;color:#a5b4fc}
+.tag.v6{background:#0a3a5a;color:#7dd3fc}
+.tag.v7{background:#2e0e49;color:#e9d5ff}
+.msg-box{background:#111;border:1px solid #262626;border-radius:12px;padding:20px 24px;margin-top:40px;font-size:0.88rem;color:#a3a3a3;line-height:1.7}
+.msg-box strong{color:#fff;display:block;margin-bottom:6px;font-size:0.95rem}
+.msg-box em{color:#e5e5e5;font-style:normal;font-weight:500}
+.msg-box code{background:#1f1f1f;padding:2px 7px;border-radius:4px;font-size:0.82rem;color:#fbbf24}
+.section-title{font-size:0.75rem;color:#666;text-transform:uppercase;letter-spacing:0.1em;margin-top:32px;margin-bottom:8px;font-weight:600}
 </style>
 </head>
 <body>
 <div class="wrap">
-<h1>BankSync &mdash; Variantes de landing</h1>
-<p class="sub">7 direcciones visuales con el mismo mensaje. Escoge la que mejor encaje.</p>
-<a href="https://banksync.fenixia.tech" target="_blank" class="prod-link">
-  App en produccion &rarr; banksync.fenixia.tech
+<h1>BankSync · A/B de variantes</h1>
+<p class="sub">Siete direcciones visuales para la landing de <strong>BankSync</strong>. Copy canónico idéntico en las siete. Cada variante tiene un <code>source</code> distinto para atribuir conversiones en Holded CRM.</p>
+<a href="https://banksync.fenixia.tech" target="_blank" rel="noopener" class="prod-link">
+  App en producción · banksync.fenixia.tech
+</a>
+<a href="https://github.com/PedroFenixia/banksync-landing-variants" target="_blank" rel="noopener" class="repo-link">
+  Ver repo en GitHub →
 </a>
 
 <div class="grid">
   <a href="v1-stripe.html" class="card">
-    <div class="tag v1">V1 &middot; Corporativo</div>
+    <div class="tag v1">V1 · Corporativo</div>
     <h2>Stripe / Brex</h2>
-    <p>Fondo blanco, tipografia limpia, purpura tech, mockup de codigo en hero. Estilo SaaS enterprise moderno.</p>
-    <div class="cta">Ver landing &rarr;</div>
+    <p>Fondo blanco, tipografía limpia, púrpura tech, mockup de código en hero. SaaS enterprise moderno.</p>
+    <div class="cta">Ver landing →</div>
   </a>
   <a href="v2-editorial.html" class="card">
-    <div class="tag v2">V2 &middot; Editorial</div>
-    <h2>Financial Times / Revista</h2>
-    <p>Fondo crema, tipografia serif Fraunces, numeracion romana, dropcap, pull quote. Estilo financiero serio.</p>
-    <div class="cta">Ver landing &rarr;</div>
+    <div class="tag v2">V2 · Editorial</div>
+    <h2>Financial Times</h2>
+    <p>Fondo crema, serif Fraunces, numeración romana, dropcap y pull quote. Voz financiera seria.</p>
+    <div class="cta">Ver landing →</div>
   </a>
   <a href="v3-brutalist.html" class="card">
-    <div class="tag v3">V3 &middot; Brutalist</div>
+    <div class="tag v3">V3 · Brutalist</div>
     <h2>Anti-standard IA</h2>
-    <p>Bordes duros, colores planos naranja/amarillo, tipografia mono, marquee scrolling. Diferenciador total.</p>
-    <div class="cta">Ver landing &rarr;</div>
+    <p>Bordes duros, colores planos, tipografía mono, marquee scrolling. Diferenciador total.</p>
+    <div class="cta">Ver landing →</div>
   </a>
   <a href="v4-minimal.html" class="card">
-    <div class="tag v4">V4 &middot; Minimal</div>
+    <div class="tag v4">V4 · Minimal</div>
     <h2>Fenix IA Minimal</h2>
-    <p>Dark oscuro azulado, acento naranja Fenix IA, card hero limpio. Balance entre minimalismo y branding.</p>
-    <div class="cta">Ver landing &rarr;</div>
+    <p>Dark azulado, acento naranja Fenix IA. Hero limpio, balance entre minimalismo y marca.</p>
+    <div class="cta">Ver landing →</div>
   </a>
   <a href="v5-vercel.html" class="card">
-    <div class="tag v5">V5 &middot; Tech Dark</div>
+    <div class="tag v5">V5 · Tech Dark</div>
     <h2>Vercel / Linear</h2>
-    <p>Negro puro, grid background, terminal CLI en hero, arquitectura visual, tipografia Geist. Estilo dev-first.</p>
-    <div class="cta">Ver landing &rarr;</div>
+    <p>Negro puro, grid background, terminal CLI en hero, arquitectura visual. Voz dev-first.</p>
+    <div class="cta">Ver landing →</div>
   </a>
   <a href="v6-corporate.html" class="card">
-    <div class="tag v6">V6 &middot; Corporate</div>
+    <div class="tag v6">V6 · Corporate</div>
     <h2>Corporate Light</h2>
-    <p>Fondo blanco, azul corporativo, mockup dashboard con cuentas bancarias reales, logos ERPs. Muy B2B clasico.</p>
-    <div class="cta">Ver landing &rarr;</div>
+    <p>Fondo blanco, azul corporativo, mockup dashboard con cuentas bancarias reales y logos ERP. B2B clásico.</p>
+    <div class="cta">Ver landing →</div>
   </a>
   <a href="v7-fenixia.html" class="card">
-    <div class="tag v7">V7 &middot; Inicial</div>
+    <div class="tag v7">V7 · Fenix IA</div>
     <h2>Fenix IA Original</h2>
-    <p>Version inicial con naranja Fenix IA, suite modular completa, diseño generico pero completo con secciones.</p>
-    <div class="cta">Ver landing &rarr;</div>
+    <p>Naranja Fenix IA, suite modular completa. La primera iteración, ya con copy canónico.</p>
+    <div class="cta">Ver landing →</div>
   </a>
 </div>
 
+<div class="section-title">Mensaje canónico</div>
 <div class="msg-box">
-  <strong>Mensaje canonico</strong> (consistente en las 7 versiones):<br>
-  Tagline: <em>"Banca conectada con tu contabilidad, sin esfuerzo."</em><br>
-  Lead: <em>"BankSync sincroniza automaticamente los movimientos de tus cuentas bancarias con tu ERP. Sin Excel. Sin errores. Sin trabajo manual."</em><br>
-  Bancos: BBVA, Santander, CaixaBank, Sabadell, ING &middot; 200+ europeos<br>
-  ERPs: Velneo, Holded, Business Central + Norma 43 universal<br>
-  Pasos: Autoriza PSD2 &rarr; Conecta ERP &rarr; Sync automatico<br>
-  CTA: Demo 15 min, sin permanencia, 14 dias prueba
+  <strong>Posicionamiento</strong>
+  <em>Banca conectada con tu contabilidad, sin esfuerzo.</em><br>
+  <em>Importamos tus movimientos bancarios a tu ERP cada día vía PSD2. Sin Excel. Sin errores. Sin tocar un archivo.</em>
+  <br><br>
+  <strong>Prueba social honesta</strong>
+  En piloto activo con cliente propio desde 2026. Construido en España. Autenticación oficial PSD2 (Enable Banking). Credenciales nunca almacenadas. Cumplimiento SCA.
+  <br><br>
+  <strong>Integraciones</strong>
+  <em>Bancos:</em> BBVA, Santander, CaixaBank, Sabadell, ING, Bankinter · 200+ bancos europeos.<br>
+  <em>ERPs:</em> Velneo, Holded, Business Central con API nativa · Norma 43 universal para A3, Sage, ContaPlus, Odoo, FactuSOL.
+  <br><br>
+  <strong>Tres pasos</strong>
+  1. Autorizas una vez (PSD2) · 2. Eliges destino (API o Norma 43) · 3. Recibes movimientos cada día.
+  <br><br>
+  <strong>Roadmap</strong>
+  <em>BankSync · Live</em> — Sincronización bancaria PSD2.<br>
+  <em>Recon, Insights, Tax · Q3 2026</em> — Conciliación, análisis cashflow con IA, IVA/SII.
+  <br><br>
+  <strong>CTA</strong>
+  Ver demo (15 min) · Sin permanencia · Sin tarjeta · 14 días de prueba.
+</div>
+
+<div class="section-title">Integración técnica</div>
+<div class="msg-box">
+  Cada variante envía leads a <code>fenix-leads-proxy.proveedores-702.workers.dev</code> → Holded CRM (funnel "FORMULARIO CONTACTO WEB").<br>
+  Campo <code>source</code> distinto por variante (<code>banksync-v1-stripe</code>, <code>banksync-v2-editorial</code>, …) para atribución A/B.
 </div>
 </div>
 </body>
