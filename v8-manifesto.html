@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- BS-SEO -->
+<title>BankSync · Sincronización bancaria automática para tu ERP</title>
+<meta name="description" content="Conecta tu banco a tu ERP vía PSD2. Importa movimientos automáticamente a Velneo, Holded o Norma 43. Sin Excel, sin errores. Demo de 15 minutos.">
+<meta name="keywords" content="sincronización bancaria automática, PSD2 España, conexión banco ERP, Norma 43, Velneo, Holded, Business Central, automatización contable, asesorías, Enable Banking">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<link rel="canonical" href="https://banksync.fenixia.tech/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://banksync.fenixia.tech/">
+<meta property="og:title" content="BankSync · Sincronización bancaria automática para tu ERP">
+<meta property="og:description" content="Conecta tu banco a tu ERP vía PSD2. Sin Excel, sin errores. Demo de 15 minutos.">
+<meta property="og:image" content="https://banksync.fenixia.tech/og-image.png">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Fenix IA BankSync">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BankSync · Sincronización bancaria automática para tu ERP">
+<meta name="twitter:description" content="Conecta tu banco a tu ERP vía PSD2. Sin Excel, sin errores.">
+<meta name="twitter:image" content="https://banksync.fenixia.tech/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BankSync","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Sincronización bancaria automática PSD2 para Velneo, Holded, Business Central y Norma 43. Para asesorías y pymes en España.","url":"https://banksync.fenixia.tech/","inLanguage":"es-ES","author":{"@type":"Organization","name":"Fenixia Solutions S.L.","url":"https://fenixia.tech","taxID":"B44846517"}}
+</script>
+<!-- /BS-SEO -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400,100;9..144,500,100;9..144,700,100&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+  background: #fff8f0;
+  color: #1a1a1a;
+  font-size: 18px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  cursor: default;
+  overflow-x: hidden;
+}
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+a { color: inherit; }
+::selection { background: #ff5722; color: #fff; }
+
+/* === Cursor follower (la masita) === */
+.blob {
+  position: fixed;
+  top: 0; left: 0;
+  width: 380px; height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,87,34,0.18), rgba(255,193,7,0.05) 60%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+/* === Nav minimal === */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 36px;
+  font-size: 13px;
+  mix-blend-mode: difference;
+  color: #fff;
+}
+nav .brand { font-weight: 500; letter-spacing: 0.02em; }
+nav .nav-cta { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; border: 0; background: transparent; color: #fff; padding: 4px 0; border-bottom: 1px solid currentColor; }
+
+/* === Sections === */
+section { position: relative; padding: 12vh 6vw; max-width: 100vw; }
+.center { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
+
+/* === Hero === */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  padding: 0 6vw;
+}
+.hero-top {
+  align-self: end;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #888;
+  display: flex; gap: 32px;
+}
+.hero-top span:first-child::before {
+  content: '●';
+  color: #16a34a;
+  margin-right: 6px;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.hero h1 {
+  font-size: clamp(3rem, 12vw, 11rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  font-variation-settings: "SOFT" 100;
+  margin: 32px 0 0;
+}
+.hero h1 .italic {
+  font-style: italic;
+  color: #ff5722;
+}
+.hero h1 .strike {
+  text-decoration: line-through;
+  text-decoration-thickness: 8px;
+  text-decoration-color: #ff5722;
+  color: #888;
+}
+.hero-bottom {
+  align-self: end;
+  display: flex; justify-content: space-between; align-items: end;
+  flex-wrap: wrap; gap: 32px;
+}
+.hero-lead {
+  max-width: 460px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #444;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 18px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hero-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+.hero-cta .arr { display: inline-block; transition: transform 0.2s ease; }
+.hero-cta:hover .arr { transform: translateX(4px); }
+
+/* === Manifiesto (text scroll) === */
+.manifesto {
+  background: #1a1a1a;
+  color: #fff8f0;
+}
+.manifesto p {
+  font-size: clamp(2rem, 6vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+  margin: 0 0 1em 0;
+  font-weight: 400;
+  font-variation-settings: "SOFT" 100;
+}
+.manifesto p em { font-style: italic; color: #ff8a65; }
+.manifesto .num {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  vertical-align: top;
+  color: #ff5722;
+  margin-right: 8px;
+}
+
+/* === Cómo funciona (3 momentos) === */
+.steps {
+  background: #fff8f0;
+}
+.step {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  gap: 48px;
+  align-items: baseline;
+  padding: 8vh 0;
+  border-top: 1px solid #ddd;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.step:last-child { border-bottom: 1px solid #ddd; }
+.step:hover { background: rgba(255,87,34,0.04); }
+.step:hover h3 { color: #ff5722; }
+.step .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: #888;
+  letter-spacing: 0.1em;
+}
+.step h3 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 100;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+.step p {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #555;
+  max-width: 38ch;
+}
+@media (max-width: 800px) {
+  .step { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* === Big stat === */
+.bigstat {
+  background: #ff5722;
+  color: #fff8f0;
+  text-align: center;
+  position: relative;
+}
+.bigstat .num {
+  font-size: clamp(8rem, 28vw, 24rem);
+  line-height: 0.85;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  font-variation-settings: "SOFT" 100;
+}
+.bigstat .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-top: 24px;
+}
+.bigstat .desc {
+  font-size: 1.1rem;
+  max-width: 28ch;
+  margin: 24px auto 0;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* === Marquee bancos === */
+.marquee {
+  background: #fff8f0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  padding: 32px 0;
+  position: relative;
+}
+.marquee-inner {
+  display: flex;
+  gap: 80px;
+  animation: scroll 30s linear infinite;
+  width: max-content;
+}
+.marquee-inner span {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  white-space: nowrap;
+}
+.marquee-inner span::after {
+  content: '✦';
+  color: #ff5722;
+  margin-left: 80px;
+  font-style: normal;
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+@keyframes scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* === Roadmap === */
+.roadmap {
+  background: #1a1a1a;
+  color: #fff8f0;
+}
+.roadmap h2 {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  margin-bottom: 64px;
+  font-variation-settings: "SOFT" 100;
+  max-width: 14ch;
+}
+.roadmap h2 em { font-style: italic; color: #ff8a65; }
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 32px;
+}
+.tl {
+  padding-top: 24px;
+  position: relative;
+}
+.tl::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #ff5722;
+  transform: translateY(-50%);
+}
+.tl.live::before { background: #16a34a; box-shadow: 0 0 12px #16a34a; }
+.tl .when {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #ff8a65;
+  margin-bottom: 8px;
+}
+.tl.live .when { color: #16a34a; }
+.tl h4 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  font-variation-settings: "SOFT" 100;
+}
+.tl p { font-size: 0.9rem; color: #aaa; line-height: 1.45; }
+@media (max-width: 800px) { .timeline { grid-template-columns: 1fr; } }
+
+/* === FAQ === */
+.faq { background: #fff8f0; }
+.faq h2 {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  margin-bottom: 48px;
+  font-variation-settings: "SOFT" 100;
+  max-width: 12ch;
+}
+.faq h2 em { font-style: italic; color: #ff5722; }
+.faq details {
+  border-top: 1px solid #ddd;
+  padding: 28px 0;
+  cursor: pointer;
+}
+.faq details:last-child { border-bottom: 1px solid #ddd; }
+.faq summary {
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  font-variation-settings: "SOFT" 100;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: '+';
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  font-size: 1.4rem;
+  transition: transform 0.3s ease;
+}
+.faq details[open] summary::after { transform: rotate(45deg); color: #ff5722; }
+.faq details p {
+  margin-top: 16px;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.55;
+  max-width: 60ch;
+}
+
+/* === CTA final === */
+.final-cta {
+  background: #fff8f0;
+  text-align: center;
+  padding: 18vh 6vw;
+}
+.final-cta .quote {
+  font-size: clamp(3rem, 10vw, 9rem);
+  line-height: 0.95;
+  font-style: italic;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  margin-bottom: 48px;
+  font-variation-settings: "SOFT" 100;
+}
+.final-cta .quote::before { content: '“'; color: #ff5722; }
+.final-cta .quote::after { content: '”'; color: #ff5722; }
+.final-cta .sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #888;
+  margin-bottom: 32px;
+}
+
+/* === Footer === */
+footer {
+  background: #1a1a1a;
+  color: #aaa;
+  padding: 64px 6vw 32px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-grid h5 { color: #ff5722; margin-bottom: 16px; font-weight: 500; }
+.footer-grid a { display: block; color: #aaa; text-decoration: none; padding: 4px 0; }
+.footer-grid a:hover { color: #fff8f0; }
+.footer-bottom { display: flex; justify-content: space-between; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; gap: 12px; }
+.brand-big {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 3rem;
+  color: #fff8f0;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  font-variation-settings: "SOFT" 100;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+@media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
+</style>
+</head>
+<body>
+
+<div class="blob" id="blob"></div>
+
+<nav>
+  <span class="brand">BankSync · Fenix IA</span>
+  <button class="nav-cta" onclick="bsOpen();return false">Ver demo →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top">
+    <span>En piloto activo</span>
+    <span>Enable Banking PSD2</span>
+    <span>Hecho en España</span>
+  </div>
+
+  <h1>
+    Banca <em class="italic">conectada</em><br>
+    con tu contabilidad,<br>
+    sin <span class="strike">Excel</span> esfuerzo.
+  </h1>
+
+  <div class="hero-bottom">
+    <p class="hero-lead">
+      Importamos tus movimientos bancarios a tu ERP cada día vía PSD2. Sin Excel. Sin errores. Sin tocar un archivo.
+    </p>
+    <button class="hero-cta" onclick="bsOpen();return false">
+      Reservar demo de 15 min <span class="arr">→</span>
+    </button>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-inner">
+    <span>BBVA</span><span>Santander</span><span>CaixaBank</span><span>Sabadell</span><span>ING</span><span>Bankinter</span><span>Velneo</span><span>Holded</span><span>Business Central</span><span>Norma 43</span>
+    <span>BBVA</span><span>Santander</span><span>CaixaBank</span><span>Sabadell</span><span>ING</span><span>Bankinter</span><span>Velneo</span><span>Holded</span><span>Business Central</span><span>Norma 43</span>
+  </div>
+</div>
+
+<!-- MANIFIESTO -->
+<section class="manifesto">
+  <p><span class="num">01</span>El <em>cierre contable</em> te quita días que podrías estar facturando.</p>
+  <p><span class="num">02</span>Descargar extractos manuales <em>no es trabajo</em>. Es fricción.</p>
+  <p><span class="num">03</span>El banco <em>ya tiene</em> tus datos. El ERP <em>los necesita</em>.</p>
+  <p><span class="num">04</span>BankSync los <em>conecta</em>. Ese es todo el truco.</p>
+</section>
+
+<!-- 3 PASOS -->
+<section class="steps">
+  <div class="step" onclick="bsOpen();return false">
+    <span class="num">P A S O · 0 1</span>
+    <h3>Autorizas <em>una vez</em>.</h3>
+    <p>PSD2 oficial vía Enable Banking. Te identificas en la web de tu banco. Las credenciales nunca pasan por nuestros servidores. Consentimiento válido 180 días, renovable.</p>
+  </div>
+  <div class="step" onclick="bsOpen();return false">
+    <span class="num">P A S O · 0 2</span>
+    <h3>Eliges el destino.</h3>
+    <p>API nativa con Velneo, Holded y Business Central. Para el resto del mercado: Norma 43 universal (A3, Sage, ContaPlus, Odoo, FactuSOL).</p>
+  </div>
+  <div class="step" onclick="bsOpen();return false">
+    <span class="num">P A S O · 0 3</span>
+    <h3>Te olvidas.</h3>
+    <p>Sincronización diaria. Detección de duplicados. Normalización de conceptos. Panel de control en tiempo real. Tu equipo deja de hacer trabajo que una API debería estar haciendo.</p>
+  </div>
+</section>
+
+<!-- BIG STAT -->
+<section class="bigstat">
+  <div class="num">80%</div>
+  <div class="label">Menos tiempo en tareas manuales</div>
+  <div class="desc">Cobrado a tus clientes, pero sin valor real. Ahora se invierte en lo que importa.</div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap">
+  <h2>El stack financiero <em>completo</em>, en piezas que puedes adoptar.</h2>
+  <div class="timeline">
+    <div class="tl live">
+      <div class="when">Hoy · Live</div>
+      <h4>BankSync</h4>
+      <p>Sincronización bancaria PSD2. Multi-banco, multi-ERP.</p>
+    </div>
+    <div class="tl">
+      <div class="when">Q3 2026</div>
+      <h4>Recon</h4>
+      <p>Conciliación automática facturas ↔ movimientos.</p>
+    </div>
+    <div class="tl">
+      <div class="when">Q3 2026</div>
+      <h4>Insights</h4>
+      <p>Análisis de cashflow con LLMs.</p>
+    </div>
+    <div class="tl">
+      <div class="when">Q3 2026</div>
+      <h4>Tax</h4>
+      <p>Automatización IVA, IRPF, SII.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <h2>Las <em>dudas</em> de siempre.</h2>
+  <details open>
+    <summary>¿Es seguro?</summary>
+    <p>Sí. Usamos PSD2 oficial vía Enable Banking, regulado por el BdE. Te identificas directamente en la web de tu banco con su SCA habitual. Nosotros nunca vemos tus credenciales y el consentimiento se renueva cada 180 días.</p>
+  </details>
+  <details>
+    <summary>¿Funciona con mi banco?</summary>
+    <p>Sí, casi seguro. Soporte para más de 200 bancos europeos. En España: BBVA, Santander, CaixaBank, Sabadell, ING, Bankinter, Cajamar, Abanca, Kutxabank, EVO y el resto. Si tu banco es exótico, pregúntanos.</p>
+  </details>
+  <details>
+    <summary>¿Y mi ERP?</summary>
+    <p>Velneo, Holded y Business Central con API nativa. Para cualquier otro: exportación Norma 43 universal, compatible con A3, Sage, ContaPlus, Odoo, FactuSOL y todo lo que entienda Norma 43.</p>
+  </details>
+  <details>
+    <summary>¿Qué pasa si se cae?</summary>
+    <p>Reintentos automáticos con backoff exponencial. Alertas a tu equipo. SLA de 99,9% en plan Pro. Y dado que el cliente final es nuestro propio piloto, somos el primer interesado en que no se caiga.</p>
+  </details>
+  <details>
+    <summary>¿Cuándo está disponible?</summary>
+    <p>BankSync está en piloto privado activo desde 2026. Apertura general en Q3 2026 junto al lanzamiento de Recon, Insights y Tax. Si quieres entrar en el piloto, escríbenos.</p>
+  </details>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final-cta">
+  <p class="quote">menos Excel,<br>más control.</p>
+  <p class="sub">15 minutos · Sin permanencia · Sin tarjeta · 14 días gratis</p>
+  <button class="hero-cta" onclick="bsOpen();return false">
+    Reservar demo <span class="arr">→</span>
+  </button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="brand-big">BankSync</div>
+      <p style="text-transform: none; letter-spacing: 0.02em; font-family: 'Fraunces', serif; font-size: 14px; color: #aaa; max-width: 32ch; line-height: 1.5;">Banca conectada con tu contabilidad, sin esfuerzo. Hecho en España por Fenixia Solutions S.L.</p>
+    </div>
+    <div>
+      <h5>Producto</h5>
+      <a href="#">BankSync</a>
+      <a href="https://banksync.fenixia.tech">App</a>
+      <a href="javascript:bsOpen()">Demo</a>
+    </div>
+    <div>
+      <h5>Legal</h5>
+      <a href="https://fenixia.tech/aviso-legal">Aviso Legal</a>
+      <a href="https://fenixia.tech/privacidad">Privacidad</a>
+      <a href="https://fenixia.tech/terminos">Términos</a>
+      <a href="https://fenixia.tech/cookies">Cookies</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024–2026 Fenixia Solutions S.L. · CIF B44846517</span>
+    <span>banksync.fenixia.tech</span>
+  </div>
+</footer>
+
+<script>
+// Cursor follower
+const blob = document.getElementById('blob');
+let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+let rafId = null;
+window.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  if (!rafId) {
+    rafId = requestAnimationFrame(() => {
+      blob.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+      rafId = null;
+    });
+  }
+});
+</script>
+
+<!-- BS-MODAL -->
+<style>
+  .bs-modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:16px}
+  .bs-modal.open{display:flex}
+  .bs-modal-backdrop{position:absolute;inset:0;background:rgba(8,12,20,0.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .bs-modal-box{position:relative;background:#fff;color:#0f172a;border-radius:16px;padding:32px 28px 28px;width:100%;max-width:440px;box-shadow:0 24px 60px rgba(0,0,0,.3);font-family:system-ui,-apple-system,sans-serif}
+  .bs-modal-close{position:absolute;top:10px;right:12px;background:transparent;border:0;font-size:26px;color:#64748b;cursor:pointer;line-height:1;padding:4px 8px}
+  .bs-modal-close:hover{color:#0f172a}
+  .bs-modal-box h3{font-size:22px;font-weight:700;margin:0 0 8px;color:#0f172a;line-height:1.2;letter-spacing:-0.01em}
+  .bs-modal-box .bs-sub{font-size:14px;color:#64748b;margin-bottom:20px}
+  .bs-modal-box label{display:block;font-size:12px;color:#475569;font-weight:600;margin-top:14px;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em}
+  .bs-modal-box input[type=text],.bs-modal-box input[type=email],.bs-modal-box input[type=tel]{width:100%;padding:10px 12px;border:1px solid #e2e8f0;border-radius:8px;font-size:14px;font-family:inherit;background:#fafafa;color:#0f172a;transition:border-color .15s,box-shadow .15s}
+  .bs-modal-box input:focus{outline:0;border-color:#ff5722;box-shadow:0 0 0 3px rgba(255,87,34,.12);background:#fff}
+  .bs-check{display:flex;align-items:flex-start;gap:8px;margin-top:16px;font-size:12px;color:#475569;font-weight:400;text-transform:none;letter-spacing:normal}
+  .bs-check input{margin-top:3px;accent-color:#ff5722}
+  .bs-check a{color:#ff5722;text-decoration:underline}
+  .bs-modal-box button[type=submit]{width:100%;margin-top:20px;padding:12px;border:0;border-radius:10px;background:#1a1a1a;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s,transform .1s}
+  .bs-modal-box button[type=submit]:hover:not(:disabled){background:#0f172a;transform:translateY(-1px)}
+  .bs-modal-box button[type=submit]:disabled{opacity:.6;cursor:wait}
+  .bs-success{text-align:center;padding:16px 0}
+  .bs-success .bs-check-icon{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:#16a34a;color:#fff;font-size:24px;margin-bottom:12px}
+  .bs-success h4{font-size:18px;color:#0f172a;margin-bottom:6px}
+  .bs-success p{color:#64748b;font-size:14px}
+  .bs-error-msg{background:#fee2e2;color:#b91c1c;padding:10px 12px;border-radius:8px;font-size:13px;margin-top:14px}
+</style>
+<div id="bs-modal" class="bs-modal" role="dialog" aria-modal="true" aria-labelledby="bs-modal-title" aria-hidden="true">
+  <div class="bs-modal-backdrop" onclick="bsClose()"></div>
+  <div class="bs-modal-box">
+    <button type="button" class="bs-modal-close" onclick="bsClose()" aria-label="Cerrar">×</button>
+    <div id="bs-form-wrap">
+      <h3 id="bs-modal-title">Ver demo en 15 minutos</h3>
+      <p class="bs-sub">Trae tu banco y tu ERP. Sin permanencia, sin tarjeta.</p>
+      <form id="bs-form" onsubmit="bsSubmit(event)">
+        <label for="bs-name">Nombre</label>
+        <input id="bs-name" name="name" type="text" required autocomplete="name">
+        <label for="bs-email">Email de trabajo</label>
+        <input id="bs-email" name="email" type="email" required autocomplete="email">
+        <label for="bs-company">Empresa</label>
+        <input id="bs-company" name="company" type="text" autocomplete="organization">
+        <label class="bs-check">
+          <input type="checkbox" name="privacy" required>
+          <span>Acepto la <a href="https://fenixia.tech/privacidad" target="_blank" rel="noopener">política de privacidad</a>.</span>
+        </label>
+        <div id="bs-error" class="bs-error-msg" hidden></div>
+        <button type="submit">Solicitar demo</button>
+      </form>
+    </div>
+    <div id="bs-success" class="bs-success" hidden>
+      <div class="bs-check-icon">✓</div>
+      <h4>Lead recibido</h4>
+      <p>Te contactamos en menos de 48 horas laborables. Si es urgente: <a href="mailto:hola@fenixia.tech" style="color:#ff5722">hola@fenixia.tech</a>.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  window.bsOpen=function(){var m=document.getElementById('bs-modal');m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';var f=document.getElementById('bs-name');if(f)f.focus()};
+  window.bsClose=function(){var m=document.getElementById('bs-modal');m.classList.remove('open');m.setAttribute('aria-hidden','true');document.body.style.overflow=''};
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')bsClose()});
+  window.bsSubmit=async function(e){
+    e.preventDefault();
+    var f=e.target;
+    var btn=f.querySelector('button[type=submit]');
+    var err=document.getElementById('bs-error');
+    err.hidden=true; err.textContent='';
+    btn.disabled=true; btn.textContent='Enviando…';
+    try{
+      var resp=await fetch('https://fenix-leads-proxy.proveedores-702.workers.dev',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          name:f.name.value.trim(),
+          email:f.email.value.trim(),
+          company:f.company.value.trim(),
+          product:'BankSync',
+          source:'banksync-v8-manifesto',
+          privacy_accepted:f.privacy.checked,
+          privacy_accepted_at:new Date().toISOString()
+        })
+      });
+      if(!resp.ok) throw new Error('HTTP '+resp.status);
+      document.getElementById('bs-form-wrap').hidden=true;
+      document.getElementById('bs-success').hidden=false;
+    }catch(ex){
+      err.textContent='No pudimos enviar el formulario. Escríbenos a hola@fenixia.tech.';
+      err.hidden=false;
+      btn.disabled=false; btn.textContent='Solicitar demo';
+    }
+  };
+})();
+</script>
+<!-- /BS-MODAL -->
+
+</body>
+</html>

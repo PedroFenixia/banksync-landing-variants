@@ -6,6 +6,7 @@ Allow: /v4-minimal.html
 Allow: /v5-vercel.html
 Allow: /v6-corporate.html
 Allow: /v7-fenixia.html
+Allow: /v8-manifesto.html
 Disallow: /
 
 Sitemap: https://pedrofenixia.github.io/banksync-landing-variants/sitemap.xml
