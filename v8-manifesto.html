@@ -66,11 +66,14 @@ nav {
   display: flex; justify-content: space-between; align-items: center;
   padding: 22px 36px;
   font-size: 13px;
-  mix-blend-mode: difference;
-  color: #fff;
+  background: rgba(255,248,240,0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  color: #1a1a1a;
 }
 nav .brand { font-weight: 500; letter-spacing: 0.02em; }
-nav .nav-cta { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; border: 0; background: transparent; color: #fff; padding: 4px 0; border-bottom: 1px solid currentColor; }
+nav .nav-cta { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; border: 0; background: transparent; color: #1a1a1a; padding: 4px 0; border-bottom: 1px solid currentColor; }
 
 /* === Sections === */
 section { position: relative; padding: 12vh 6vw; max-width: 100vw; }
@@ -188,9 +191,9 @@ section { position: relative; padding: 12vh 6vw; max-width: 100vw; }
 .manifesto .num {
   display: block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
+  font-size: 1.2rem;
   color: #ff5722;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 /* === Cómo funciona (3 momentos) === */
@@ -215,6 +218,7 @@ section { position: relative; padding: 12vh 6vw; max-width: 100vw; }
   font-size: 14px;
   color: #888;
   letter-spacing: 0.1em;
+  white-space: nowrap;
 }
 .step h3 {
   font-size: clamp(2rem, 5vw, 4rem);
