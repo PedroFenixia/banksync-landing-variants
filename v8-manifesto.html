@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="Conecta tu banco a tu ERP vía PSD2. Sin Excel, sin errores.">
 <meta name="twitter:image" content="https://pedrofenixia.github.io/banksync-landing-variants/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BankSync","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Sincronización bancaria automática PSD2 para Velneo, Holded, Business Central y Norma 43. Para asesorías y pymes en España.","url":"https://banksync.fenixia.tech/","inLanguage":"es-ES","author":{"@type":"Organization","name":"Fenixia Solutions S.L.","url":"https://fenixia.tech","taxID":"B44846517"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BankSync","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Sincronización bancaria automática PSD2 para Velneo, Holded, Business Central y Norma 43. Para asesorías y pymes en España.","url":"https://banksync.fenixia.tech/","inLanguage":"es-ES","author":{"@type":"Organization","name":"Fenixia Solutions S.L.","url":"https://fenixia.tech","taxID":"B22739668"}}
 </script>
 <!-- /BS-SEO -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,13 +91,25 @@ section { position: relative; padding: 12vh 6vw; max-width: 100vw; }
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: #888;
-  display: flex; gap: 32px;
+  letter-spacing: 0.12em;
+  color: #666;
+  display: flex; gap: 12px;
+  flex-wrap: wrap;
+}
+.hero-top span {
+  padding: 6px 14px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.5);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.hero-top span:first-child {
+  border-color: #16a34a;
+  color: #16a34a;
 }
 .hero-top span:first-child::before {
   content: '●';
-  color: #16a34a;
   margin-right: 6px;
   animation: pulse 2s infinite;
 }
@@ -126,7 +138,7 @@ section { position: relative; padding: 12vh 6vw; max-width: 100vw; }
   flex-wrap: wrap; gap: 32px;
 }
 .hero-lead {
-  max-width: 460px;
+  max-width: 100%;
   font-size: 1.1rem;
   line-height: 1.5;
   color: #444;
@@ -156,12 +168,19 @@ section { position: relative; padding: 12vh 6vw; max-width: 100vw; }
   background: #1a1a1a;
   color: #fff8f0;
 }
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px 80px;
+}
+@media (max-width: 800px) {
+  .manifesto-grid { grid-template-columns: 1fr; gap: 48px; }
+}
 .manifesto p {
-  font-size: clamp(2rem, 6vw, 5rem);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
-  max-width: 14ch;
-  margin: 0 0 2em 0;
+  margin: 0;
   font-weight: 400;
   font-variation-settings: "SOFT" 100;
 }
@@ -251,7 +270,8 @@ section { position: relative; padding: 12vh 6vw; max-width: 100vw; }
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   overflow: hidden;
-  padding: 32px 0;
+  padding: 48px 0;
+  margin: 32px 0;
   position: relative;
 }
 .marquee-inner {
@@ -485,10 +505,12 @@ footer {
 
 <!-- MANIFIESTO -->
 <section class="manifesto">
-  <p><span class="num">01</span>El <em>cierre contable</em> te quita días que podrías estar facturando.</p>
-  <p><span class="num">02</span>Descargar extractos manuales <em>no es trabajo</em>. Es fricción.</p>
-  <p><span class="num">03</span>El banco <em>ya tiene</em> tus datos. El ERP <em>los necesita</em>.</p>
-  <p><span class="num">04</span>BankSync los <em>conecta</em>. Ese es todo el truco.</p>
+  <div class="manifesto-grid">
+    <p><span class="num">01</span>El <em>cierre contable</em> te quita días que podrías estar facturando.</p>
+    <p><span class="num">02</span>Descargar extractos manuales <em>no es trabajo</em>. Es fricción.</p>
+    <p><span class="num">03</span>El banco <em>ya tiene</em> tus datos. El ERP <em>los necesita</em>.</p>
+    <p><span class="num">04</span>BankSync los <em>conecta</em>. Ese es todo el truco.</p>
+  </div>
 </section>
 
 <!-- 3 PASOS -->
@@ -593,14 +615,14 @@ footer {
     </div>
     <div>
       <h5>Legal</h5>
-      <a href="https://fenixia.tech/aviso-legal">Aviso Legal</a>
-      <a href="https://fenixia.tech/privacidad">Privacidad</a>
-      <a href="https://fenixia.tech/terminos">Términos</a>
-      <a href="https://fenixia.tech/cookies">Cookies</a>
+      <a href="aviso-legal.html">Aviso Legal</a>
+      <a href="privacidad.html">Privacidad</a>
+      <a href="terminos.html">Términos</a>
+      <a href="cookies.html">Cookies</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2024–2026 Fenixia Solutions S.L. · CIF B44846517</span>
+    <span>© 2024–2026 Fenixia Solutions S.L. · CIF B22739668</span>
     <span>banksync.fenixia.tech</span>
   </div>
 </footer>
@@ -663,7 +685,7 @@ window.addEventListener('mousemove', (e) => {
         <input id="bs-company" name="company" type="text" autocomplete="organization">
         <label class="bs-check">
           <input type="checkbox" name="privacy" required>
-          <span>Acepto la <a href="https://fenixia.tech/privacidad" target="_blank" rel="noopener">política de privacidad</a>.</span>
+          <span>Acepto la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</span>
         </label>
         <div id="bs-error" class="bs-error-msg" hidden></div>
         <button type="submit">Solicitar demo</button>
